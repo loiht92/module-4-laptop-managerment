@@ -1,15 +1,18 @@
 package com.codegym.laptopmanager.service;
 
+import com.codegym.laptopmanager.model.CartItems;
 import com.codegym.laptopmanager.model.Origin;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
 
 public interface ICartItemsService {
-    Iterable<Origin> findAll();
+    Page<CartItems> findAll(Pageable pageable);
 
-    Optional<Origin> findById(Long id);
+    Optional<CartItems> findById(Long id);
 
-    void save(Origin origin);
+    void save(CartItems cartItems);
 
     void remote(Long id);
 }

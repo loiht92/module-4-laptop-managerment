@@ -1,4 +1,9 @@
 package com.codegym.laptopmanager.repository;
 
-public class CustomerRepository {
+import com.codegym.laptopmanager.model.Customer;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface CustomerRepository extends PagingAndSortingRepository<Customer, Long> {
 }

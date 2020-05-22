@@ -1,15 +1,18 @@
 package com.codegym.laptopmanager.service;
 
+import com.codegym.laptopmanager.model.Manufacturer;
 import com.codegym.laptopmanager.model.Origin;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
 
 public interface IManufacturerService {
-    Iterable<Origin> findAll();
+    Page<Manufacturer> findAll(Pageable pageable);
 
-    Optional<Origin> findById(Long id);
+    Optional<Manufacturer> findById(Long id);
 
-    void save(Origin origin);
+    void save(Manufacturer manufacturer);
 
     void remote(Long id);
 }

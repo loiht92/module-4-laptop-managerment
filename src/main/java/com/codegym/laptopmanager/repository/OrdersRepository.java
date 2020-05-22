@@ -1,9 +1,9 @@
 package com.codegym.laptopmanager.repository;
 
-import com.codegym.laptopmanager.model.CartItems;
+import com.codegym.laptopmanager.model.Orders;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CartItemsRepository extends PagingAndSortingRepository<CartItems, Long> {
+public interface OrdersRepository extends PagingAndSortingRepository<Orders, Long> {
 }
