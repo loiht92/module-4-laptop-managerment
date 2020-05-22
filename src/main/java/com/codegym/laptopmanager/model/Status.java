@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table
-public class Manufacturer {
+public class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

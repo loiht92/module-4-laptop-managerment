@@ -1,6 +1,6 @@
 package com.codegym.laptopmanager.service.impl;
 
-import com.codegym.laptopmanager.model.Manufacturer;
+import com.codegym.laptopmanager.model.Status;
 import com.codegym.laptopmanager.repository.ManufacturerRepository;
 import com.codegym.laptopmanager.service.IManufacturerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +16,17 @@ public class ManufacturerServiceImpl implements IManufacturerService {
     private ManufacturerRepository manufacturerRepository;
 
     @Override
-    public Page<Manufacturer> findAll(Pageable pageable) {
+    public Page<Status> findAll(Pageable pageable) {
         return manufacturerRepository.findAll(pageable);
     }
 
     @Override
-    public Optional<Manufacturer> findById(Long id) {
+    public Optional<Status> findById(Long id) {
         return manufacturerRepository.findById(id);
     }
 
     @Override
-    public void save(Manufacturer manufacturer) {
+    public void save(Status manufacturer) {
         manufacturerRepository.save(manufacturer);
     }
 
