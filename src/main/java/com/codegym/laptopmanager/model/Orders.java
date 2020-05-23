@@ -10,7 +10,8 @@ public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Date order_date;
+
+    private Date customer_date_orders;
 
     @ManyToOne
     @JoinColumn
@@ -43,11 +44,11 @@ public class Orders {
         this.id = id;
     }
 
-    public Date getOrder_date() {
-        return order_date;
+    public Date getCustomer_date_orders() {
+        return customer_date_orders;
     }
 
-    public void setOrder_date(Date order_date) {
-        this.order_date = order_date;
+    public void setCustomer_date_orders(Date customer_date_orders) {
+        this.customer_date_orders = customer_date_orders;
     }
 }

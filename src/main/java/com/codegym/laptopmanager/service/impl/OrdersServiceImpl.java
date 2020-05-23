@@ -21,6 +21,12 @@ public class OrdersServiceImpl implements IOrdersService {
     }
 
     @Override
+    public Page<Orders> findAllByDateOrders(String orders_date, Pageable pageable) {
+        return ordersRepository.findAllByCustomer_date_orders(orders_date, pageable);
+    }
+
+
+    @Override
     public Optional<Orders> findById(Long id) {
         return ordersRepository.findById(id);
     }

@@ -9,6 +9,8 @@ import java.util.Optional;
 public interface ICustomerService {
     Page<Customer> findAll(Pageable pageable);
 
+    Page<Customer> findAllByCustomerName(String name, Pageable pageable);
+
     Optional<Customer> findById(Long id);
 
     void save(Customer customer);
