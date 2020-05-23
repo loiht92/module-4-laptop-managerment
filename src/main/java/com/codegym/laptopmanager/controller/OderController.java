@@ -8,11 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Optional;
 
@@ -29,6 +28,7 @@ public class OderController {
     public Page<Customer> customers(Pageable pageable){
        return customerService.findAll(pageable);
     }
+
     @GetMapping
     public ModelAndView listOrders(@RequestParam("orders") Optional<String> orders_date, Pageable pageable){
         Page<Orders> orders;
@@ -40,7 +40,24 @@ public class OderController {
         ModelAndView modelAndView = new ModelAndView("/orders/list");
         modelAndView.addObject("orders", orders);
         return modelAndView;
+    }
+
+    @GetMapping("/create")
+    public ModelAndView showFormCreateOrders(){
+        ModelAndView modelAndView = new ModelAndView("orders/create");
+        modelAndView.addObject("orders", new Orders());
+        return modelAndView;
+    }
+
+    @PostMapping("/create")
+    public RedirectView saveOrders(@ModelAttribute("orders") Orders orders, RedirectAttributes redirect){
+        ordersService.save(orders);
+        redirect.addFlashAttribute("message", "create orders successfully !");
+        return new RedirectView("/orders");
+
 
     }
+
+
 
 }

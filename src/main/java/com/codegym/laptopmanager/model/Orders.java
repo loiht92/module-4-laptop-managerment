@@ -1,7 +1,6 @@
 package com.codegym.laptopmanager.model;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -11,7 +10,7 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Date customer_date_orders;
+    private String customer_date_orders;
 
     @ManyToOne
     @JoinColumn
@@ -44,11 +43,11 @@ public class Orders {
         this.id = id;
     }
 
-    public Date getCustomer_date_orders() {
+    public String getCustomer_date_orders() {
         return customer_date_orders;
     }
 
-    public void setCustomer_date_orders(Date customer_date_orders) {
+    public void setCustomer_date_orders(String customer_date_orders) {
         this.customer_date_orders = customer_date_orders;
     }
 }
