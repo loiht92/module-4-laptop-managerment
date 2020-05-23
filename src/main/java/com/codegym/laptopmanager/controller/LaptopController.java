@@ -82,14 +82,14 @@ public class LaptopController {
     }
 
     @GetMapping("/edit/{id}")
-    public ModelAndView showEditCustomer(@PathVariable Long id){
-        Optional<Customer> customer = customerService.findById(id);
-        if (customer.isPresent()){
-            ModelAndView modelAndView = new ModelAndView("/customer/edit");
-            modelAndView.addObject("customer", customer.get());
+    public ModelAndView showEditLaptop(@PathVariable Long id){
+        Optional<Laptop> laptop = laptopService.findById(id);
+        if (laptop.isPresent()){
+            ModelAndView modelAndView = new ModelAndView("/laptop/edit");
+            modelAndView.addObject("laptop", laptop.get());
             return modelAndView;
         } else {
-            return new ModelAndView("/customer/error");
+            return new ModelAndView("/laptop/error");
         }
     }
 
