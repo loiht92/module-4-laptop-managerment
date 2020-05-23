@@ -113,10 +113,10 @@ public class LaptopController {
     }
 
     @PostMapping("/delete")
-    public String deleteCustomer(@ModelAttribute("customer") Customer customer, RedirectAttributes redirect){
-        customerService.remove(customer.getId());
-        redirect.addFlashAttribute("message", "delete customer successfully !");
-        return "redirect:/customer";
+    public RedirectView deleteLaptop(@ModelAttribute("laptop") Laptop laptop, RedirectAttributes redirect){
+        laptopService.remote(laptop.getId());
+        redirect.addFlashAttribute("message", "delete laptop successfully !");
+        return new RedirectView("/laptop");
     }
 
     @GetMapping("/view/{id}")
