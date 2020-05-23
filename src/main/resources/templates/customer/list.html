@@ -1,10 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-seurity">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<h2>Spring Security Example</h2>
 
+<div>
+    <a th:href="@{/list}">Home</a> | <a th:href="@{/logout}">Logout</a>
+</div>
+Language: <a href="?lang=en">English</a> | <a href="?lang=vi">Vietnamese</a><br/>
+<a href="/customer/create"><span th:text="#{producer.create}"></span></a><br/>
+<a href="/producer"><span th:text="#{producer.list}"></span></a>
+<form>
+    <span th:text="#{producer.span_label}"></span>
+    <input name="name" type="text">
+    <input type="submit" th:value="#{producer.search}">
+
+</form>
+
+<div class="notify">
+    <div th:if="${message}">
+        <!--/*@thymesVar id="message" type="Gom.codegym.AppConfiguration"*/-->
+        <span th:text="${message}"></span>
+    </div>
+    <h1><span th:text="#{producer.h1}"></span></h1>
+    <table border="1" >
+        <tr>
+            <th th:text="#{producer.th_label1}"></th>
+            <th th:text="#{producer.th_label4}"></th>
+            <th th:text="#{producer.th_label5}"></th>
+            <th th:text="#{producer.th_label6}"></th>
+        </tr>
+        <tr th:each="p : ${producers} ">
+            <td th:text="${p.name}"></td>
+            <td><a th:href="@{/producer/edit/{id}(id=${p.getId()})}"><span th:text="#{producer.th_label4}"></span></a></td>
+            <td><a th:href="@{/producer/delete/{id}(id=${p.getId()})}"><span th:text="#{producer.th_label5}"></span></a></td>
+            <td><a th:href="@{/producer/view/{id}(id=${p.getId()})}"><span th:text="#{producer.th_label6}"></span></a></td>
+        </tr>
+    </table>
+</div>
+<div>
+    <a th:href="@{'/producer'(page=${producers.number - 1})}" th:if="${producers.hasPrevious()}"><span th:text="#{producer.previous}"></span></a>
+    <span th:text="${producers.number + 1}"></span>/<span th:text="${producers.totalPages}"></span>
+    <a th:href="@{'/producer'(page=${producers.number + 1})}" th:if="${producers.hasNext()}"><span th:text="#{producer.next}"></span></a>
+</div>
 </body>
 </html>
