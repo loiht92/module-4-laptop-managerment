@@ -85,7 +85,13 @@ public class OderController {
         }else {
             return new ModelAndView("/orders/error");
         }
+    }
 
+    @PostMapping("/delete")
+    public RedirectView deleteOrders(@ModelAttribute("orders") Orders orders, RedirectAttributes redirect){
+        ordersService.remote(orders.getId());
+        redirect.addFlashAttribute("message", "delete orders successfully !");
+        return new RedirectView("/orders");
     }
 
 
