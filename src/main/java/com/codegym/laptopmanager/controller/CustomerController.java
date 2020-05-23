@@ -81,10 +81,10 @@ public class CustomerController {
     }
 
     @PostMapping("/delete")
-    public RedirectView deleteProducer(@ModelAttribute("producer") Producer producer, RedirectAttributes redirect){
-        producerService.remote(producer.getId());
-        redirect.addFlashAttribute("message", "Delete producer successfully !" );
-        return new RedirectView("/producer");
+    public RedirectView deleteCustomer(@ModelAttribute("customer") Customer customer, RedirectAttributes redirect){
+        customerService.remote(customer.getId());
+        redirect.addFlashAttribute("message", "Delete customer successfully !" );
+        return new RedirectView("/customer");
     }
 
     @GetMapping("/view/{id}")
