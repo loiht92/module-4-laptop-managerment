@@ -54,9 +54,20 @@ public class OderController {
         ordersService.save(orders);
         redirect.addFlashAttribute("message", "create orders successfully !");
         return new RedirectView("/orders");
-
-
     }
+
+    @GetMapping("/edit/{id}")
+    public ModelAndView showEditOrders(@PathVariable Long id){
+        Optional<Orders> orders = ordersService.findById(id);
+        if (orders.isPresent()){
+            ModelAndView modelAndView = new ModelAndView("/orders/edit");
+            modelAndView.addObject("orders", orders.get());
+            return modelAndView;
+        }else {
+            return new ModelAndView("/orders/error");
+        }
+    }
+
 
 
 
