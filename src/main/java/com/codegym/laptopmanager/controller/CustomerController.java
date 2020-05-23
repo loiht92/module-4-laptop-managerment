@@ -54,29 +54,29 @@ public class CustomerController {
         Optional<Customer> customer = customerService.findById(id);
         if (customer.isPresent()){
             ModelAndView modelAndView = new ModelAndView("/customer/edit");
-            modelAndView.addObject("producer", producer.get());
+            modelAndView.addObject("customer", customer.get());
             return modelAndView;
         }else {
-            return new ModelAndView("/producer/error");
+            return new ModelAndView("/customer/error");
         }
     }
 
     @PostMapping("/edit")
-    public RedirectView editProducer(@ModelAttribute("producer") Producer producer, RedirectAttributes redirect){
-        producerService.save(producer);
-        redirect.addFlashAttribute("message", "Edit producer successfully !" );
-        return new RedirectView("/producer");
+    public RedirectView editCustomer(@ModelAttribute("customer") Customer customer, RedirectAttributes redirect){
+        customerService.save(customer);
+        redirect.addFlashAttribute("message", "Edit customer successfully !" );
+        return new RedirectView("/customer");
     }
 
     @GetMapping("/delete/{id}")
-    public ModelAndView showFormDeleteProducer(@PathVariable Long id){
-        Optional<Producer> producer = producerService.findById(id);
-        if (producer.isPresent()){
-            ModelAndView modelAndView = new ModelAndView("/producer/delete");
-            modelAndView.addObject("producer", producer.get());
+    public ModelAndView showFormDeleteCustomerr(@PathVariable Long id){
+        Optional<Customer> customer = customerService.findById(id);
+        if (customer.isPresent()){
+            ModelAndView modelAndView = new ModelAndView("/customer/delete");
+            modelAndView.addObject("customer", customer.get());
             return modelAndView;
         }else {
-            return new ModelAndView("/producer/error");
+            return new ModelAndView("/customer/error");
         }
     }
 
