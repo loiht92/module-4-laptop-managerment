@@ -20,18 +20,18 @@ public class Laptop {
 
     @ManyToOne
     @JoinColumn
-    private Status manufacturer;
+    private Status status;
 
     @ManyToOne
     @JoinColumn
     private Orders orders;
 
-    public Status getManufacturer() {
-        return manufacturer;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setManufacturer(Status manufacturer) {
-        this.manufacturer = manufacturer;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public Orders getOrder() {

@@ -1,8 +1,8 @@
 package com.codegym.laptopmanager.service.impl;
 
 import com.codegym.laptopmanager.model.Status;
-import com.codegym.laptopmanager.repository.ManufacturerRepository;
-import com.codegym.laptopmanager.service.IManufacturerService;
+import com.codegym.laptopmanager.repository.StatusRepository;
+import com.codegym.laptopmanager.service.IStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class ManufacturerServiceImpl implements IManufacturerService {
+public class ManufacturerServiceImpl implements IStatusService {
     @Autowired
-    private ManufacturerRepository manufacturerRepository;
+    private StatusRepository manufacturerRepository;
 
     @Override
     public Page<Status> findAll(Pageable pageable) {
