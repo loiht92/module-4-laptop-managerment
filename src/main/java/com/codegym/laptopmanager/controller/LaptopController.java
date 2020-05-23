@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
@@ -74,17 +75,10 @@ public class LaptopController {
     }
 
     @PostMapping("/create")
-    public String saveCustomer(@ModelAttribute("customer") Customer customer, RedirectAttributes redirect){
-        byte[] byte1 =  customer.getFirstName().getBytes(StandardCharsets.ISO_8859_1);
-        byte[] byte2 =  customer.getLastName().getBytes(StandardCharsets.ISO_8859_1);
-        String decodedSignature1 = new String(byte1, StandardCharsets.UTF_8);
-        String decodedSignature2 = new String(byte2, StandardCharsets.UTF_8);
-        customer.setFirstName(decodedSignature1);
-        customer.setLastName(decodedSignature2);
-
-        customerService.save(customer);
-        redirect.addFlashAttribute("message", "create customer successfully !");
-        return "redirect:/customer";
+    public RedirectView saveLaptop(@ModelAttribute("laptop") Laptop laptop, RedirectAttributes redirect){
+        laptopService.save(laptop);
+        redirect.addFlashAttribute("message", "create laptop successfully !");
+        return new RedirectView("/laptop");
     }
 
     @GetMapping("/edit/{id}")
