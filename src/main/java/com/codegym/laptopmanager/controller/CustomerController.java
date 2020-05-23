@@ -50,10 +50,10 @@ public class CustomerController {
     }
 
     @GetMapping("/edit/{id}")
-    public ModelAndView showEditProducer(@PathVariable Long id){
-        Optional<Producer> producer = producerService.findById(id);
-        if (producer.isPresent()){
-            ModelAndView modelAndView = new ModelAndView("/producer/edit");
+    public ModelAndView showEditCustomer(@PathVariable Long id){
+        Optional<Customer> customer = customerService.findById(id);
+        if (customer.isPresent()){
+            ModelAndView modelAndView = new ModelAndView("/customer/edit");
             modelAndView.addObject("producer", producer.get());
             return modelAndView;
         }else {
