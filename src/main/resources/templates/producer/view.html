@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th>
+<head>
+    <meta charset="UTF-8">
+    <title>View Customer</title>
+</head>
+<body>
+<h1>View Customer</h1>
+<a href="/producer">List Customer</a>
+<table>
+    <tr>
+        <td>Producer Name:</td>
+        <td th:text="${producer.getName()}"></td>
+    </tr>
+</table>
+</body>
+</html>

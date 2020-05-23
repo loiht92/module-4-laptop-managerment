@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit Customers</title>
 </head>
 <body>
+<h1>Edit customer</h1>
+<a href="/producer">List customers</a>
+<!--/*@thymesVar id="message" type="java"*/-->
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
 
+<form th:action="@{/producer/edit}" th:object="${producer}" method="post">
+    <input type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Producer Name:</td>
+            <td><input type="text" name="firstName" th:value="${producer.name}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Update"></td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

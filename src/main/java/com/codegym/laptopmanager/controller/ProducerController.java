@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/producer")
 public class ProducerController {
     @Autowired
@@ -32,18 +32,18 @@ public class ProducerController {
         return modelAndView;
     }
 
-    @GetMapping
+    @GetMapping("/create")
     public ModelAndView showFormCreateProducer(){
-        ModelAndView modelAndView = new ModelAndView("/producer/create");
+        ModelAndView modelAndView = new ModelAndView("producer/create");
         modelAndView.addObject("producer", new Producer());
         return modelAndView;
     }
 
-    @PostMapping
-    public String saveProducer(@ModelAttribute("producer") Producer producer, RedirectAttributes redirect){
+    @PostMapping("/creates")
+    public RedirectView saveProducer(@ModelAttribute("producer") Producer producer, RedirectAttributes redirect){
         producerService.save(producer);
         redirect.addFlashAttribute("message", "Create producer successfully !");
-        return "redirect:/producer";
+        return new RedirectView("/producer");
     }
 
     @GetMapping("/edit/{id}")
@@ -59,10 +59,10 @@ public class ProducerController {
     }
 
     @PostMapping("/edit")
-    public String editProducer(@ModelAttribute("producer") Producer producer, RedirectAttributes redirect){
+    public RedirectView editProducer(@ModelAttribute("producer") Producer producer, RedirectAttributes redirect){
         producerService.save(producer);
         redirect.addFlashAttribute("message", "Edit producer successfully !" );
-        return "redirect:/producer";
+        return new RedirectView("/producer");
     }
 
     @GetMapping("/delete/{id}")
@@ -78,10 +78,10 @@ public class ProducerController {
     }
 
     @PostMapping("/delete")
-    public String deleteProducer(@ModelAttribute("producer") Producer producer, RedirectAttributes redirect){
+    public RedirectView deleteProducer(@ModelAttribute("producer") Producer producer, RedirectAttributes redirect){
         producerService.remote(producer.getId());
         redirect.addFlashAttribute("message", "Delete producer successfully !" );
-        return "redirect:/producer";
+        return new RedirectView("/producer");
     }
 
     @GetMapping("/view/{id}")
@@ -89,14 +89,9 @@ public class ProducerController {
         Optional<Producer> producer = producerService.findById(id);
         if (producer.isPresent()){
             ModelAndView modelAndView = new ModelAndView("/producer/view");
-            modelAndView.addObject("producer", producer);
+            modelAndView.addObject("producer", producer.get());
             return modelAndView;
         }
         return new ModelAndView("/producer/error");
     }
-
-
-
-
-
 }

@@ -12,8 +12,8 @@
     <a th:href="@{/list}">Home</a> | <a th:href="@{/logout}">Logout</a>
 </div>
 Language: <a href="?lang=en">English</a> | <a href="?lang=vi">Vietnamese</a><br/>
-<a href="/customer/create"><span th:text="#{producer.create}"></span></a><br/>
-<a href="/customer"><span th:text="#{producer.list}"></span></a>
+<a href="/producer/create"><span th:text="#{producer.create}"></span></a><br/>
+<a href="/producer"><span th:text="#{producer.list}"></span></a>
 <form>
     <span th:text="#{producer.span_label}"></span>
     <input name="first" type="text">
@@ -36,9 +36,9 @@ Language: <a href="?lang=en">English</a> | <a href="?lang=vi">Vietnamese</a><br/
         </tr>
         <tr th:each="p : ${producers} ">
             <td th:text="${p.name}"></td>
-            <td><a th:href="@{/customer/edit/{id}(id=${p.getId()})}"><span th:text="#{producer.th_label4}"></span></a></td>
-            <td><a th:href="@{/customer/delete/{id}(id=${p.getId()})}"><span th:text="#{producer.th_label5}"></span></a></td>
-            <td><a th:href="@{/customer/view/{id}(id=${p.getId()})}"><span th:text="#{producer.th_label6}"></span></a></td>
+            <td><a th:href="@{/producer/edit/{id}(id=${p.getId()})}"><span th:text="#{producer.th_label4}"></span></a></td>
+            <td><a th:href="@{/producer/delete/{id}(id=${p.getId()})}"><span th:text="#{producer.th_label5}"></span></a></td>
+            <td><a th:href="@{/producer/view/{id}(id=${p.getId()})}"><span th:text="#{producer.th_label6}"></span></a></td>
         </tr>
     </table>
 </div>
