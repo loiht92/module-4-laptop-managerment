@@ -16,8 +16,8 @@ public class StatusServiceImpl implements IStatusService {
     private StatusRepository manufacturerRepository;
 
     @Override
-    public Page<Status> findAll(Pageable pageable) {
-        return manufacturerRepository.findAll(pageable);
+    public Iterable<Status> findAll() {
+        return manufacturerRepository.findAll();
     }
 
     @Override

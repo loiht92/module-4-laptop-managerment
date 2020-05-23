@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.Optional;
 
 public interface IStatusService {
-    Page<Status> findAll(Pageable pageable);
+    Iterable<Status> findAll();
 
     Optional<Status> findById(Long id);
 
