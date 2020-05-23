@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>View Customer</title>
 </head>
 <body>
-
+<h1>View Customer</h1>
+<a href="/producer">List Customer</a>
+<table>
+    <tr>
+        <td>Customer Name:</td>
+        <td th:text="${customer.getName()}"></td>
+    </tr>
+    <tr>
+        <td>Phone:</td>
+        <td th:text="${customer.getPhone()}"></td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td th:text="${customer.getEmail()}"></td>
+    </tr>
+    <tr>
+        <td>Address:</td>
+        <td th:text="${customer.getAddress()}"></td>
+    </tr>
+</table>
 </body>
 </html>
