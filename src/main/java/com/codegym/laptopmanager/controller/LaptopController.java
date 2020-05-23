@@ -94,17 +94,10 @@ public class LaptopController {
     }
 
     @PostMapping("/edit")
-    public String updateCustomer(@ModelAttribute("customer") Customer customer, RedirectAttributes redirect){
-        byte[] byte1 =  customer.getFirstName().getBytes(StandardCharsets.ISO_8859_1);
-        byte[] byte2 =  customer.getLastName().getBytes(StandardCharsets.ISO_8859_1);
-        String decodedSignature1 = new String(byte1, StandardCharsets.UTF_8);
-        String decodedSignature2 = new String(byte2, StandardCharsets.UTF_8);
-        customer.setFirstName(decodedSignature1);
-        customer.setLastName(decodedSignature2);
-
-        customerService.save(customer);
-        redirect.addFlashAttribute("message","edit customer successfully !");
-        return "redirect:/customer";
+    public RedirectView updateLaptop(@ModelAttribute("laptop") Laptop laptop, RedirectAttributes redirect){
+        laptopService.save(laptop);
+        redirect.addFlashAttribute("message","edit laptop successfully !");
+        return new RedirectView("/laptop");
     }
 
     @GetMapping("/delete/{id}")
