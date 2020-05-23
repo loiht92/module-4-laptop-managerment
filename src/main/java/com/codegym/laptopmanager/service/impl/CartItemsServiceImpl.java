@@ -3,7 +3,6 @@ package com.codegym.laptopmanager.service.impl;
 import com.codegym.laptopmanager.model.Cart;
 import com.codegym.laptopmanager.model.CartItems;
 import com.codegym.laptopmanager.model.Laptop;
-import com.codegym.laptopmanager.model.Origin;
 import com.codegym.laptopmanager.repository.CartItemsRepository;
 import com.codegym.laptopmanager.service.ICartItemsService;
 import org.springframework.beans.factory.annotation.Autowired;

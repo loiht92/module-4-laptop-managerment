@@ -1,14 +1,26 @@
 package com.codegym.laptopmanager.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table
-public class Origin {
+public class Producer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+
+    @OneToMany(mappedBy = "producer", fetch = FetchType.EAGER)
+    List<Laptop> laptops;
+
+    public List<Laptop> getLaptops() {
+        return laptops;
+    }
+
+    public void setLaptops(List<Laptop> laptops) {
+        this.laptops = laptops;
+    }
 
     public Long getId() {
         return id;

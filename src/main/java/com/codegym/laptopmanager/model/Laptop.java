@@ -26,6 +26,26 @@ public class Laptop {
     @JoinColumn
     private Orders orders;
 
+    @ManyToOne
+    @JoinColumn
+    private Producer producer;
+
+    public Orders getOrders() {
+        return orders;
+    }
+
+    public Producer getProducer() {
+        return producer;
+    }
+
+    public void setProducer(Producer producer) {
+        this.producer = producer;
+    }
+
+    public void setOrders(Orders orders) {
+        this.orders = orders;
+    }
+
     public Status getStatus() {
         return status;
     }

@@ -1,8 +1,8 @@
 package com.codegym.laptopmanager.service.impl;
 
-import com.codegym.laptopmanager.model.Origin;
-import com.codegym.laptopmanager.repository.OriginRepository;
-import com.codegym.laptopmanager.service.IOriginService;
+import com.codegym.laptopmanager.model.Producer;
+import com.codegym.laptopmanager.repository.ProducerRepository;
+import com.codegym.laptopmanager.service.IProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,22 +11,22 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class OriginServiceImpl implements IOriginService {
+public class ProducerServiceImpl implements IProducerService {
     @Autowired
-    private OriginRepository originRepository;
+    private ProducerRepository originRepository;
 
     @Override
-    public Page<Origin> findAll(Pageable pageable) {
+    public Page<Producer> findAll(Pageable pageable) {
         return originRepository.findAll(pageable);
     }
 
     @Override
-    public Optional<Origin> findById(Long id) {
+    public Optional<Producer> findById(Long id) {
         return originRepository.findById(id);
     }
 
     @Override
-    public void save(Origin origin) {
+    public void save(Producer origin) {
         originRepository.save(origin);
     }
 

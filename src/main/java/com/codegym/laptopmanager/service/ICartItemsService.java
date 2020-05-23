@@ -3,7 +3,6 @@ package com.codegym.laptopmanager.service;
 import com.codegym.laptopmanager.model.Cart;
 import com.codegym.laptopmanager.model.CartItems;
 import com.codegym.laptopmanager.model.Laptop;
-import com.codegym.laptopmanager.model.Origin;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

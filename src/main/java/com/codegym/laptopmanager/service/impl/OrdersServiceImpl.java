@@ -1,7 +1,6 @@
 package com.codegym.laptopmanager.service.impl;
 
 import com.codegym.laptopmanager.model.Orders;
-import com.codegym.laptopmanager.model.Origin;
 import com.codegym.laptopmanager.repository.OrdersRepository;
 import com.codegym.laptopmanager.service.IOrdersService;
 import org.springframework.beans.factory.annotation.Autowired;

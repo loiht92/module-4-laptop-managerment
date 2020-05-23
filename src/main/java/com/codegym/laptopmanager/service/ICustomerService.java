@@ -1,7 +1,6 @@
 package com.codegym.laptopmanager.service;
 
 import com.codegym.laptopmanager.model.Customer;
-import com.codegym.laptopmanager.model.Origin;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

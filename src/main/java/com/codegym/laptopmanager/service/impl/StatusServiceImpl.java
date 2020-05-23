@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class ManufacturerServiceImpl implements IStatusService {
+public class StatusServiceImpl implements IStatusService {
     @Autowired
     private StatusRepository manufacturerRepository;
 
