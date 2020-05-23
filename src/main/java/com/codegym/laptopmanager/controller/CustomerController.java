@@ -1,9 +1,7 @@
 package com.codegym.laptopmanager.controller;
 
 import com.codegym.laptopmanager.model.Customer;
-import com.codegym.laptopmanager.model.Producer;
 import com.codegym.laptopmanager.service.ICustomerService;
-import com.codegym.laptopmanager.service.IProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -88,13 +86,13 @@ public class CustomerController {
     }
 
     @GetMapping("/view/{id}")
-    public ModelAndView viewProducer(@PathVariable Long id){
-        Optional<Producer> producer = producerService.findById(id);
-        if (producer.isPresent()){
-            ModelAndView modelAndView = new ModelAndView("/producer/view");
-            modelAndView.addObject("producer", producer.get());
+    public ModelAndView viewCustomer(@PathVariable Long id){
+        Optional<Customer> customer = customerService.findById(id);
+        if (customer.isPresent()){
+            ModelAndView modelAndView = new ModelAndView("/customer/view");
+            modelAndView.addObject("customer", customer.get());
             return modelAndView;
         }
-        return new ModelAndView("/producer/error");
+        return new ModelAndView("/customer/error");
     }
 }
