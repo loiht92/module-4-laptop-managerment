@@ -75,6 +75,19 @@ public class OderController {
         return new RedirectView("/orders");
     }
 
+    @GetMapping("/delete/{id}")
+    public ModelAndView showFormDeleteOrders(@PathVariable Long id){
+        Optional<Orders> orders = ordersService.findById(id);
+        if (orders.isPresent()){
+            ModelAndView modelAndView = new ModelAndView("/orders/delete");
+            modelAndView.addObject("orders", orders.get());
+            return modelAndView;
+        }else {
+            return new ModelAndView("/orders/error");
+        }
+
+    }
+
 
 
 
