@@ -68,6 +68,13 @@ public class OderController {
         }
     }
 
+    @PostMapping("/edit")
+    public RedirectView editOrders(@ModelAttribute("orders") Orders orders, RedirectAttributes redirect){
+        ordersService.save(orders);
+        redirect.addFlashAttribute("message", "Edit orders successfully !" );
+        return new RedirectView("/orders");
+    }
+
 
 
 
