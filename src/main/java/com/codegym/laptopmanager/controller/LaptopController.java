@@ -101,19 +101,17 @@ public class LaptopController {
     }
 
     @GetMapping("/delete/{id}")
-    public ModelAndView showDeleteCustomer(@PathVariable Long id) {
-        Optional<Customer> customer = customerService.findById(id);
-        //customer.getName()?
-        //customer.firstName?
-        if (customer.isPresent()){
-            ModelAndView modelAndView = new ModelAndView("/customer/delete");
-            modelAndView.addObject("customer", customer.get());
+    public ModelAndView showFormDeleteLaptop(@PathVariable Long id) {
+        Optional<Laptop> laptop = laptopService.findById(id);
+        if (laptop.isPresent()){
+            ModelAndView modelAndView = new ModelAndView("/laptop/delete");
+            modelAndView.addObject("laptop", laptop.get());
             return modelAndView;
         } else {
-            return new ModelAndView("/customer/error");
+            return new ModelAndView("/laptop/error");
         }
     }
-    //delete
+
     @PostMapping("/delete")
     public String deleteCustomer(@ModelAttribute("customer") Customer customer, RedirectAttributes redirect){
         customerService.remove(customer.getId());
