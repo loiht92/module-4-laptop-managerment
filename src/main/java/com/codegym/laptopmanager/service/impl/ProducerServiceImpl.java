@@ -31,8 +31,8 @@ public class ProducerServiceImpl implements IProducerService {
     }
 
     @Override
-    public void save(Producer origin) {
-        producerRepository.save(origin);
+    public void save(Producer producer) {
+        producerRepository.save(producer);
     }
 
     @Override
