@@ -31,22 +31,22 @@ public class CustomerController {
             customers = customerService.findAll(pageable);
         }
         ModelAndView modelAndView = new ModelAndView("customer/list");
-        modelAndView.addObject("customer", customers);
+        modelAndView.addObject("customers", customers);
         return modelAndView;
     }
 
     @GetMapping("/create")
     public ModelAndView showFormCreateCustomer(){
         ModelAndView modelAndView = new ModelAndView("customer/create");
-        modelAndView.addObject("producer", new Producer());
+        modelAndView.addObject("customer", new Customer());
         return modelAndView;
     }
 
     @PostMapping("/creates")
-    public RedirectView saveProducer(@ModelAttribute("producer") Producer producer, RedirectAttributes redirect){
-        producerService.save(producer);
-        redirect.addFlashAttribute("message", "Create producer successfully !");
-        return new RedirectView("/producer");
+    public RedirectView saveCustomer(@ModelAttribute("customer") Customer customer, RedirectAttributes redirect){
+        customerService.save(customer);
+        redirect.addFlashAttribute("message", "Create customer successfully !");
+        return new RedirectView("/customer");
     }
 
     @GetMapping("/edit/{id}")
