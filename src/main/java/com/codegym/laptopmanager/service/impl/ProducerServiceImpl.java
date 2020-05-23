@@ -13,25 +13,30 @@ import java.util.Optional;
 @Service
 public class ProducerServiceImpl implements IProducerService {
     @Autowired
-    private ProducerRepository originRepository;
+    private ProducerRepository producerRepository;
 
     @Override
     public Page<Producer> findAll(Pageable pageable) {
-        return originRepository.findAll(pageable);
+        return producerRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Producer> findAllByName(String name, Pageable pageable) {
+        return producerRepository.findAllByName(name, pageable);
     }
 
     @Override
     public Optional<Producer> findById(Long id) {
-        return originRepository.findById(id);
+        return producerRepository.findById(id);
     }
 
     @Override
     public void save(Producer origin) {
-        originRepository.save(origin);
+        producerRepository.save(origin);
     }
 
     @Override
     public void remote(Long id) {
-        originRepository.deleteById(id);
+        producerRepository.deleteById(id);
     }
 }
