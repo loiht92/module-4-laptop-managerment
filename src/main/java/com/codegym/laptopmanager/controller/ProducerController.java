@@ -5,6 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/origin")
-public class OriginController {
+public class ProducerController {
 
 }

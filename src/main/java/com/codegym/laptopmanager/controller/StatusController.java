@@ -18,7 +18,7 @@ public class StatusController {
     public ModelAndView listStatus(){
         Iterable<Status> statuses = statusService.findAll();
         ModelAndView modelAndView = new ModelAndView("/status/list");
-        modelAndView.addObject("status", statuses);
+        modelAndView.addObject("statuses", statuses);
         return modelAndView;
     }
 }

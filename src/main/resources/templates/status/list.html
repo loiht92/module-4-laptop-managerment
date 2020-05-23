@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-
-</html>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -11,47 +9,31 @@
 <h2>Spring Security Example</h2>
 <hr/>
 <div>
-    <a :href="@{/list}">Home</a> | <a th:href="@{/logout}">Logout</a>
+    <a th:href="@{/list}">Home</a> | <a th:href="@{/logout}">Logout</a>
 </div>
 Language: <a href="?lang=en">English</a> | <a href="?lang=vi">Vietnamese</a><br/>
-<a href="/customer/create"><span th:utext="#{customer.create}"></span></a><br/>
-<a href="/customer"><span th:text="#{customer.listall}"></span></a>
-<form>
-    <span th:text="#{customer.span_label}"></span>
-    <input name="first" type="text">
-    <input type="submit" th:value="#{customer.search}">
-</form>
+<a href="/customer"><span th:text="#{status.list}"></span></a>
 
 <div class="notify">
+    <!--/*@thymesVar id="message" type="java"*/-->
     <div th:if="${message}">
-        <!--/*@thymesVar id="message" type="Gom.codegym.AppConfiguration"*/-->
         <span th:text="${message}"></span>
     </div>
-    <h1><span th:text="#{customer.h1}"></span></h1>
+    <h1><span th:text="#{status.h1}"></span></h1>
     <table border="1" >
         <tr>
-            <th th:text="#{customer.th_label1}"></th>
-            <th th:text="#{customer.th_label2}"></th>
-            <th th:text="#{customer.th_label3}"></th>
-            <th th:text="#{customer.th_label4}"></th>
-            <th th:text="#{customer.th_label5}"></th>
-            <th th:text="#{customer.th_label6}"></th>
+            <th th:text="#{status.th_label1}"></th>
+            <th th:text="#{status.th_label2}"></th>
+            <th th:text="#{status.th_label3}"></th>
+            <th th:text="#{status.th_label4}"></th>
         </tr>
-        <tr th:each="customer : ${status} ">
-            <td th:utext="${status.}"></td>
-            <td th:utext="${customer.lastName}"></td>
-            <td th:utext="${customer.province.name}"></td>
-            <td><a th:href="@{/customer/edit/{id}(id=${customer.getId()})}"><span th:text="#{customer.th_label4}"></span></a></td>
-            <td><a th:href="@{/customer/delete/{id}(id=${customer.getId()})}"><span th:text="#{customer.th_label5}"></span></a></td>
-            <td><a th:href="@{/customer/view/{id}(id=${customer.getId()})}"><span th:text="#{customer.th_label6}"></span></a></td>
+        <tr th:each="s : ${statuses} ">
+            <td th:text="${s.name}"></td>
+            <td><a th:href="@{/customer/edit/{id}(id=${s.getId()})}"><span th:text="#{status.th_label2}"></span></a></td>
+            <td><a th:href="@{/customer/delete/{id}(id=${s.getId()})}"><span th:text="#{status.th_label3}"></span></a></td>
+            <td><a th:href="@{/customer/view/{id}(id=${s.getId()})}"><span th:text="#{status.th_label4}"></span></a></td>
         </tr>
     </table>
 </div>
-<!--<div>-->
-<!--    <a th:href="@{'/customer'(page=${customers.number - 1})}" th:if="${customers.hasPrevious()}"><span th:text="#{customer.previous}"></span></a>-->
-<!--    <span th:text="${customers.number + 1}"></span>/<span th:text="${customers.totalPages}"></span>-->
-<!--    <a th:href="@{'/customer'(page=${customers.number + 1})}" th:if="${customers.hasNext()}"><span th:text="#{customer.next}"></span></a>-->
-<!--</div>-->
-</div>
 </body>
-</html
+</html>
