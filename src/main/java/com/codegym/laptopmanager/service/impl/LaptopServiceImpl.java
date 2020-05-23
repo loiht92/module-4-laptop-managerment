@@ -1,6 +1,7 @@
 package com.codegym.laptopmanager.service.impl;
 
 import com.codegym.laptopmanager.model.Laptop;
+import com.codegym.laptopmanager.model.Status;
 import com.codegym.laptopmanager.repository.LaptopRepository;
 import com.codegym.laptopmanager.service.ILaptopService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,16 @@ public class LaptopServiceImpl implements ILaptopService {
     @Override
     public Page<Laptop> findAll(Pageable pageable) {
         return laptopRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Laptop> findAllByName(String name, Pageable pageable) {
+        return laptopRepository.findAllByName(name, pageable);
+    }
+
+    @Override
+    public Page<Laptop> findAllByStatus(Status status, Pageable pageable) {
+        return laptopRepository.findAllByStatus(status, pageable);
     }
 
     @Override
