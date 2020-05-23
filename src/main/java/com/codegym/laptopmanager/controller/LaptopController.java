@@ -1,6 +1,9 @@
 package com.codegym.laptopmanager.controller;
 
-import com.codegym.laptopmanager.model.*;
+import com.codegym.laptopmanager.model.Laptop;
+import com.codegym.laptopmanager.model.Orders;
+import com.codegym.laptopmanager.model.Producer;
+import com.codegym.laptopmanager.model.Status;
 import com.codegym.laptopmanager.service.ILaptopService;
 import com.codegym.laptopmanager.service.IOrdersService;
 import com.codegym.laptopmanager.service.IProducerService;
@@ -16,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -120,21 +122,15 @@ public class LaptopController {
     }
 
     @GetMapping("/view/{id}")
-    public ModelAndView viewCustomer(@PathVariable Long id){
-        Optional<Customer> customer = customerService.findById(id);
-        if (customer.isPresent()){
-            ModelAndView modelAndView = new ModelAndView("/customer/view");
-            modelAndView.addObject("customer", customer.get());
+    public ModelAndView viewLaptop(@PathVariable Long id){
+        Optional<Laptop> laptop = laptopService.findById(id);
+        if (laptop.isPresent()){
+            ModelAndView modelAndView = new ModelAndView("/laptopr/view");
+            modelAndView.addObject("laptop", laptop.get());
             return modelAndView;
         }
         else {
-            return new ModelAndView("/customer/error");
+            return new ModelAndView("/laptop/error");
         }
     }
-
-
-
-
-
-
 }
