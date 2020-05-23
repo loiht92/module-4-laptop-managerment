@@ -20,10 +20,10 @@ public class ProducerController {
     private IProducerService producerService;
 
     @GetMapping
-    public ModelAndView listProducer(@RequestParam("name") Optional<String> producer_name, @PageableDefault(size = 10)Pageable pageable){
+    public ModelAndView listProducer(@RequestParam("name") Optional<String> name, @PageableDefault(size = 10)Pageable pageable){
         Page<Producer> producers;
-        if (producer_name.isPresent()){
-            producers = producerService.findAllByName(producer_name.get(), pageable);
+        if (name.isPresent()){
+            producers = producerService.findAllByName(name.get(), pageable);
         }else {
             producers = producerService.findAll(pageable);
         }
