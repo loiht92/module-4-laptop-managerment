@@ -94,7 +94,15 @@ public class OderController {
         return new RedirectView("/orders");
     }
 
-
-
-
+    @GetMapping("/view/{id}")
+    public ModelAndView viewOrders(@PathVariable Long id) {
+        Optional<Orders> orders = ordersService.findById(id);
+        if (orders.isPresent()) {
+            ModelAndView modelAndView = new ModelAndView("/orders/view");
+            modelAndView.addObject("orders", orders.get());
+            return modelAndView;
+        } else {
+            return new ModelAndView("/orders/error");
+        }
+    }
 }
