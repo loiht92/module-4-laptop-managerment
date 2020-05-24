@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <a href="/carts">Gio hang o day ne</a>
+    <tr>
+        <td th:each="l : ${laptops}">
+            <p th:text="${l.name}"></p>
+            <img th:src="${l.image}">
+            <p th:src="${l.description}"></p>
+            <p th:text="${l.price}"></p>
+            <a th:href="@{'/add-to-cart/' + ${l.id}}">Add</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

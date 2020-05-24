@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
+<th:block th:each="cartItem : ${cartItems}">
+    <form method="post" th:action="@{'/remove' + ${cartItem.id} }">
+        <input type="submit" value="Remove this item">
+    </form>
+    <form method="post" th:action="@{/edit}">
+        <p>
+            <strong th:text="${cartItem.laptop.name}"></strong>
+        </p>
+        <p th:text="${cartItem.total_price}"></p>
+        <input type="number" name="quantity" id="quantity" th:value="${cartItem.quantity}" onchange="this.form.submit()">
+        <input name="id" id="id" th:value="${cartItem.id}" type="hidden">
+    </form>
+</th:block>
+<strong>Total price  <span th:text="${cart.total_price}"></span></strong>
 </body>
 </html>

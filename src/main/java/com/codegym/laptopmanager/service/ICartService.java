@@ -1,17 +1,33 @@
 package com.codegym.laptopmanager.service;
 
 import com.codegym.laptopmanager.model.Cart;
+import com.codegym.laptopmanager.model.CartItems;
+import com.codegym.laptopmanager.model.Laptop;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.Optional;
+import java.util.List;
 
 public interface ICartService {
-    Page<Cart> findAll(Pageable pageable);
+    Page<Laptop> findAllLaptop(Pageable pageable);
 
-    Optional<Cart> findById(Long id);
+    List<CartItems> findAllCartItems();
 
-    void save(Cart cart);
+    List<Cart> findAllCart();
 
-    void remote(Long id);
+    CartItems findCartItemsById(Long id);
+
+    void removeCartItemsById(Long id);
+
+    void saveCartItems(CartItems cartItems);
+
+    void saveCart(Cart cart);
+
+    Laptop findLaptopById(Long laptop_id);
+
+    CartItems findCartItemByCartAndLaptop(Cart cart, Laptop laptop);
+
+    List<CartItems> findCartItemsByCart(Cart cart);
+
+    List<CartItems> findCartItemByCart(Cart cart);
 }

@@ -51,4 +51,12 @@ public class CartItems {
     public void setTotal_price(double total_price) {
         this.total_price = total_price;
     }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
 }
