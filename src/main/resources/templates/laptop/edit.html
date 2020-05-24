@@ -34,7 +34,7 @@
         <tr>
             <td>Status:</td>
             <td>
-                <select name="name">
+                <select name="name" th:field="*{status}">
                     <option
                             th:each="status : ${statuses}"
                             th:value="${status.id}"
@@ -46,7 +46,7 @@
         <tr>
             <td>Orders:</td>
             <td>
-                <select name="customerDates">
+                <select name="customerDates" th:field="*{orders}">
                     <option
                             th:each="order : ${orders}"
                             th:value="${order.id}"
@@ -58,7 +58,7 @@
         <tr>
             <td>Producer:</td>
             <td>
-                <select name="name">
+                <select name="name" th:field="*{producer}">
                     <option
                             th:each="p : ${producer}"
                             th:value="${p.id}"
