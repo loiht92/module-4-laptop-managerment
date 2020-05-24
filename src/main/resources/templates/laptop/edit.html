@@ -2,67 +2,67 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Customers</title>
+    <title>Edit Laptop</title>
 </head>
 <body>
-<h1>Edit customer</h1>
-<a href="/orders">List Orders</a>
+<h1>Edit laptop</h1>
+<a href="/orders">List Laptop</a>
 <!--/*@thymesVar id="message" type="java"*/-->
 <th:block th:if="${message}">
     <p th:text="${message}"></p>
 </th:block>
 
-<form th:action="@{/orders/edit}" th:object="${orders}" method="post">
+<form th:action="@{/laptop/edit}" th:object="${laptop}" method="post">
     <input type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>
-            <td>Order Date:</td>
-            <td><input type="text" name="customerDates" th:value="${orders.customerDates}"></td>
+            <td>Name:</td>
+            <td><input type="text" name="name" th:value="${laptop.name}"></td>
         </tr>
         <tr>
-            <td>Customer Name:</td>
+            <td>Image:</td>
+            <td><input type="text" name="image" th:value="${laptop.image}"></td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td><input type="text" name="description" th:value="${laptop.description}"></td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td><input type="text" name="price" th:value="${laptop.price}"></td>
+        </tr>
+        <tr>
+            <td>Status:</td>
             <td>
-                <select name="name" th:field="*{customer}">
+                <select name="name">
                     <option
-                            th:each="c : ${customers}"
-                            th:value="${c.id}"
-                            th:text="${c.name}">e
+                            th:each="status : ${statuses}"
+                            th:value="${status.id}"
+                            th:text="${status.name}">e
                     </option>
                 </select>
             </td>
         </tr>
         <tr>
-            <td>Phone:</td>
+            <td>Orders:</td>
             <td>
-                <select name="phone" th:field="*{customer}">
+                <select name="customerDates">
                     <option
-                            th:each="c : ${customers}"
-                            th:value="${c.id}"
-                            th:text="${c.phone}">
+                            th:each="order : ${orders}"
+                            th:value="${order.id}"
+                            th:text="${order.customerDates}">
                     </option>
                 </select>
             </td>
         </tr>
         <tr>
-            <td>Email:</td>
+            <td>Producer:</td>
             <td>
-                <select name="email" th:field="*{customer}">
+                <select name="name">
                     <option
-                            th:each="c : ${customers}"
-                            th:value="${c.id}"
-                            th:text="${c.email}">
-                    </option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Address:</td>
-            <td>
-                <select name="address" th:field="*{customer}">
-                    <option
-                            th:each="c : ${customers}"
-                            th:value="${c.id}"
-                            th:text="${c.address}">
+                            th:each="p : ${producer}"
+                            th:value="${p.id}"
+                            th:text="${p.name}">
                     </option>
                 </select>
             </td>
