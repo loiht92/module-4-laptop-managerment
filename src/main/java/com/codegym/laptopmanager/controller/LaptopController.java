@@ -127,7 +127,7 @@ public class LaptopController {
     public ModelAndView viewLaptop(@PathVariable Long id){
         Optional<Laptop> laptop = laptopService.findById(id);
         if (laptop.isPresent()){
-            ModelAndView modelAndView = new ModelAndView("/laptopr/view");
+            ModelAndView modelAndView = new ModelAndView("/laptop/view");
             modelAndView.addObject("laptop", laptop.get());
             return modelAndView;
         }
