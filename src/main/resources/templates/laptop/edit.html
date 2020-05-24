@@ -1,10 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit Customers</title>
 </head>
 <body>
+<h1>Edit customer</h1>
+<a href="/orders">List Orders</a>
+<!--/*@thymesVar id="message" type="java"*/-->
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
 
+<form th:action="@{/orders/edit}" th:object="${orders}" method="post">
+    <input type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Order Date:</td>
+            <td><input type="text" name="customerDates" th:value="${orders.customerDates}"></td>
+        </tr>
+        <tr>
+            <td>Customer Name:</td>
+            <td>
+                <select name="name" th:field="*{customer}">
+                    <option
+                            th:each="c : ${customers}"
+                            th:value="${c.id}"
+                            th:text="${c.name}">e
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Phone:</td>
+            <td>
+                <select name="phone" th:field="*{customer}">
+                    <option
+                            th:each="c : ${customers}"
+                            th:value="${c.id}"
+                            th:text="${c.phone}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td>
+                <select name="email" th:field="*{customer}">
+                    <option
+                            th:each="c : ${customers}"
+                            th:value="${c.id}"
+                            th:text="${c.email}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td>
+                <select name="address" th:field="*{customer}">
+                    <option
+                            th:each="c : ${customers}"
+                            th:value="${c.id}"
+                            th:text="${c.address}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Update"></td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

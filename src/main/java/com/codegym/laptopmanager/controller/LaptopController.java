@@ -38,10 +38,12 @@ public class LaptopController {
     public Iterable<Status> statuses(){
         return statusService.findAll();
     }
+
     @ModelAttribute("orders")
     public Page<Orders> orders(Pageable pageable){
         return ordersService.findAll(pageable);
     }
+
     @ModelAttribute("producer")
     public Page<Producer> producers(Pageable pageable){
         return producerService.findAll(pageable);
