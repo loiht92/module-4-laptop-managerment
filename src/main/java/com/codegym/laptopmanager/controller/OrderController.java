@@ -1,7 +1,6 @@
 package com.codegym.laptopmanager.controller;
 
 import com.codegym.laptopmanager.model.Customer;
-import com.codegym.laptopmanager.model.OrderRequest;
 import com.codegym.laptopmanager.model.Orders;
 import com.codegym.laptopmanager.repository.CustomerRepository;
 import com.codegym.laptopmanager.repository.OrdersRepository;
@@ -17,8 +16,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Optional;
-
-import static java.util.Objects.isNull;
 
 @Controller
 @RequestMapping("/orders")
@@ -72,15 +69,8 @@ public class OrderController {
         Optional<Orders> orders = ordersService.findById(id);
         if (orders.isPresent()){
             ModelAndView modelAndView = new ModelAndView("/orders/edit");
-            Orders order = orders.get();
-            OrderRequest request = new OrderRequest();
-//            request.setId(order.getId());
-//            request.setCustomerDates(order.getCustomerDates());
-//            request.setName(order.getCustomer().getName());
-//            request.setEmail(order.getCustomer().getEmail());
-//            request.setAddress(order.getCustomer().getAddress());
-//            request.setPhone(order.getCustomer().getPhone());
-            modelAndView.addObject("orders", order);
+            //Orders order = orders.get();
+            modelAndView.addObject("orders", orders.get());
             return modelAndView;
         } else {
             return new ModelAndView("/orders/error");
@@ -88,16 +78,17 @@ public class OrderController {
     }
 
     @PostMapping("/edit")
-    public RedirectView editOrders(@ModelAttribute("orders") Orders request, RedirectAttributes redirect) throws Exception {
-        if (isNull(request)) {
-            throw new Exception("Order is required!");
-        }
+    public RedirectView editOrders(@ModelAttribute("orders") Orders orders, RedirectAttributes redirect) throws Exception {
+//        if (isNull(orders)) {
+//            throw new Exception("Order is required!");
+//        }
 //        Customer customer = customerRepo.findCustomerByOrders(order);
 //        order.setCustomer(customer);
-        System.out.println(request);
+        //System.out.println(request);
 
 //        Orders orders = ordersRepo.findOrdersByCustomer(customer);
 //        System.out.println(orders.getId());
+        ordersService.save(orders);
         redirect.addFlashAttribute("message", "Edit orders successfully !" );
         return new RedirectView("/orders");
     }
