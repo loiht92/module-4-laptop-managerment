@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<!--<form th:action="@{/carts}">-->
 <table>
-    <a href="/carts">Gio hang o day ne</a>
+    <p>Shopping-cart:
+        <a href="/carts" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
+        </a>
+    </p>
+
     <tr>
         <td th:each="l : ${laptops}">
             <p th:text="${l.name}"></p>
             <img th:src="${l.image}">
             <p th:src="${l.description}"></p>
             <p th:text="${l.price}"></p>
-            <a th:href="@{'/add-to-cart/' + ${l.id}}">Add</a>
+            <a th:href="@{'/add-cart' + ${l.id}}">Add</a>
         </td>
     </tr>
 </table>
-
+<!--</form>-->
 </body>
 </html>

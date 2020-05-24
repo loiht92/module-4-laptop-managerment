@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -21,8 +22,8 @@ public class OrdersServiceImpl implements IOrdersService {
     }
 
     @Override
-    public Page<Orders> findAllByDateOrders(String orders_date, Pageable pageable) {
-        return ordersRepository.findAllByCustomer_date_orders(orders_date, pageable);
+    public Page<Orders> findAllByDatesOrders(String orders_date, Pageable pageable) {
+        return ordersRepository.findAllByCustomerDates(orders_date, pageable);
     }
 
 

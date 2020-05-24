@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OrdersRepository extends PagingAndSortingRepository<Orders, Long> {
-    Page<Orders> findAllByCustomer_date_orders(String orders_date, Pageable pageable);
+    Page<Orders> findAllByCustomerDates(String orders_date, Pageable pageable);
 }

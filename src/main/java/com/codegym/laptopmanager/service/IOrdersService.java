@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface IOrdersService {
     Page<Orders> findAll(Pageable pageable);
 
-    Page<Orders> findAllByDateOrders(String orders_date, Pageable pageable);
+    Page<Orders> findAllByDatesOrders(String orders_date, Pageable pageable);
 
     Optional<Orders> findById(Long id);
 

@@ -32,8 +32,8 @@ public class OderController {
     @GetMapping
     public ModelAndView listOrders(@RequestParam("orders") Optional<String> orders_date, Pageable pageable){
         Page<Orders> orders;
-        if (orders_date.isPresent()){
-            orders = ordersService.findAllByDateOrders(orders_date.get(), pageable);
+        if (orders_date .isPresent()){
+            orders = ordersService.findAllByDatesOrders(orders_date.get(), pageable);
         }else {
             orders = ordersService.findAll(pageable);
         }
