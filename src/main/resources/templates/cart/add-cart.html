@@ -20,7 +20,7 @@
     <tr>
         <td th:each="l : ${laptops}">
             <p th:text="${l.name}"></p>
-            <img th:src="${l.image}">
+            <img th:src="${l.image}"><br/>
             <p th:src="${l.description}"></p>
             <p th:text="${l.price}"></p>
             <a th:href="@{'/add-cart' + ${l.id}}">Add</a>

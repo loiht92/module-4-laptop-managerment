@@ -1,29 +1,12 @@
 package com.codegym.laptopmanager.model;
 
-import javax.persistence.*;
-import java.util.List;
-
-@Entity
-@Table
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class OrderRequest {
     private Long id;
+    private String customerDates;
     private String name;
     private String phone;
     private String email;
     private String address;
-
-    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
-    private List<Orders> orders;
-
-    public List<Orders> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Orders> orders) {
-        this.orders = orders;
-    }
 
     public Long getId() {
         return id;
@@ -31,6 +14,14 @@ public class Customer {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCustomerDates() {
+        return customerDates;
+    }
+
+    public void setCustomerDates(String customerDates) {
+        this.customerDates = customerDates;
     }
 
     public String getName() {

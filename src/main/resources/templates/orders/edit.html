@@ -16,21 +16,53 @@
     <input type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>
-            <td>Customer Date:</td>
-            <td><input type="text" name="customerDates" th:value="${customer.firstName}"></td>
+            <td>Order Date:</td>
+            <td><input type="text" name="customerDates" th:value="${orders.customerDates}"></td>
         </tr>
         <tr>
-            <td>Last Name:</td>
-            <td><input type="text" name="lastName" th:value="${customer.lastName}"></td>
-        </tr>
-        <tr>
-            <td>Province Name:</td>
+            <td>Customer Name:</td>
             <td>
-                <select name="province">
+                <select name="name" th:field="*{customer}">
                     <option
-                            th:each="province : ${provinces}"
-                            th:value="${province.id}"
-                            th:text="${province.name}">
+                            th:each="c : ${customers}"
+                            th:value="${c.id}"
+                            th:text="${c.name}">e
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Phone:</td>
+            <td>
+                <select name="phone" th:field="*{customer}">
+                    <option
+                            th:each="c : ${customers}"
+                            th:value="${c.id}"
+                            th:text="${c.phone}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td>
+                <select name="email" th:field="*{customer}">
+                    <option
+                            th:each="c : ${customers}"
+                            th:value="${c.id}"
+                            th:text="${c.email}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td>
+                <select name="address" th:field="*{customer}">
+                    <option
+                            th:each="c : ${customers}"
+                            th:value="${c.id}"
+                            th:text="${c.address}">
                     </option>
                 </select>
             </td>

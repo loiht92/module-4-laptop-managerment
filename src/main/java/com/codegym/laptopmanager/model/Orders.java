@@ -12,7 +12,7 @@ public class Orders {
 
     private String customerDates;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Customer customer;
 

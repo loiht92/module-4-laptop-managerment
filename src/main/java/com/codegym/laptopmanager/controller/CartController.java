@@ -81,5 +81,4 @@ public class CartController {
         cartService.removeCartItemsById(cartItem_id);
         return new RedirectView("/carts");
     }
-
 }
