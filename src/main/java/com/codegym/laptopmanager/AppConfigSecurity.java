@@ -32,16 +32,16 @@ public class AppConfigSecurity extends WebSecurityConfigurerAdapter {
 
 
     public static void main(String[] args) {
-        String pass = new BCryptPasswordEncoder().encode("12345");
+        String pass = new BCryptPasswordEncoder().encode("123456");
         System.out.println(pass);
 
-        String pass1 = new BCryptPasswordEncoder().encode("12346");
+        String pass1 = new BCryptPasswordEncoder().encode("123457");
         System.out.println(pass1);
 
-        String pass2 = new BCryptPasswordEncoder().encode("12347");
+        String pass2 = new BCryptPasswordEncoder().encode("123458");
         System.out.println(pass2);
 
-        String pass3 = new BCryptPasswordEncoder().encode("12348");
+        String pass3 = new BCryptPasswordEncoder().encode("123459");
         System.out.println(pass3);
     }
 
@@ -49,8 +49,8 @@ public class AppConfigSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 //.antMatchers("/**").authenticated()
-                .antMatchers("/admin/**").access("hasRole('ADMIN')")
-                .antMatchers("/user/**").access("hasRole('USER')")
+                .antMatchers("/admin").access("hasRole('ADMIN')")
+                .antMatchers("/user").access("hasRole('USER')")
                 //.antMatchers("/articles/**").access("hasAnyRole('ADMIN','USER')")
                 .and()
                 .formLogin()

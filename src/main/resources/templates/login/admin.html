@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Spring Security Example</title>
+</head>
+<body>
+<h2>Spring Security Example</h2>
+<hr/>
+<h3>Admin dashboard</h3>
+<!--<div th:text="${#authentication.getName()}"></div>-->
+<!--<div th:if="${#authorization.getAuthentication().isAuthenticated()}">-->
+<!--    This will only be displayed if authenticated user has role ROLE_ADMIN.-->
+<!--</div>-->
+<!--<span>Welcome !</span><div th:text="${#authentication.name}">-->
+<!--    &lt;!&ndash;    <b>Welcome! <span th:text="${#authentication.name}"></span></b>&ndash;&gt;-->
+<!--    &lt;!&ndash;        <span sec:authentication="principal.username"></span></b>&ndash;&gt;-->
+<!--</div>-->
+<!--<br/>-->
+
+<!--<div th:text="${#authentication}" sec:authorize="isAuthenticated()">-->
+
+<a th:href="@{/}">Home</a> |
+<a th:href="@{/customer}">List Customer</a> |
+<a th:href="@{/logout}">Logout</a>
+<!--</div>-->
+</body>
+</html>
