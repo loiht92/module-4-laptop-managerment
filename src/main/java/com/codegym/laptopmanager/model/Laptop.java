@@ -3,7 +3,6 @@ package com.codegym.laptopmanager.model;
 import javax.persistence.*;
 
 @Entity
-@Table
 public class Laptop {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,6 +31,34 @@ public class Laptop {
 
     @ManyToOne
     private Customer customer;
+
+    public Laptop() {
+    }
+
+    public Laptop(Long id, String name, String image, String description, double price, Status status, Orders orders,
+                  Producer producer, Customer customer) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.description = description;
+        this.price = price;
+        this.status = status;
+        this.orders = orders;
+        this.producer = producer;
+        this.customer = customer;
+    }
+
+    public Laptop(String name, String image, String description, double price, Status status, Orders orders,
+                  Producer producer, Customer customer) {
+        this.name = name;
+        this.image = image;
+        this.description = description;
+        this.price = price;
+        this.status = status;
+        this.orders = orders;
+        this.producer = producer;
+        this.customer = customer;
+    }
 
     public Customer getCustomer() {
         return customer;

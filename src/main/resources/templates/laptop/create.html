@@ -10,15 +10,16 @@
     <a href="/laptop">Laptop list</a>
 </p>
 
-<form th:action="@{/laptop/create}"  method="post" th:object="${laptop}" >
+<form th:action="@{/laptop/create}"  method="post" th:object="${laptopForm}" enctype="multipart/form-data" >
     <table>
+
         <tr>
             <td>Name:</td>
             <td><input type="text" th:field="*{name}"/></td>
         </tr>
         <tr>
             <td>Image:</td>
-            <td><input type="text" th:field="*{image}"/></td>
+            <td><input type="file" th:field="*{image}" multiple/></td>
         </tr>
         <tr>
             <td>Description:</td>
@@ -52,18 +53,7 @@
                 </select>
             </td>
         </tr>
-        <tr>
-            <td>Producer:</td>
-            <td>
-                <select name="name" th:field="*{producer}">
-                    <option
-                            th:each="p : ${producer}"
-                            th:value="${p.id}"
-                            th:text="${p.name}">
-                    </option>
-                </select>
-            </td>
-        </tr>
+
         <tr>
             <td></td>
             <td><input type="submit" value="Save"></td>

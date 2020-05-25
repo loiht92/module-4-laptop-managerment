@@ -14,20 +14,9 @@
     <table>
         <tr>
             <td>Customer Date:</td>
-            <td><input type="text" th:field="*{customerDates}"/></td>
+            <td><input type="text" /></td>
         </tr>
-        <tr>
-            <td>Customer Name:</td>
-            <td>
-                <select name="name" th:field="*{customer}">
-                    <option
-                            th:each="c : ${customers}"
-                            th:value="${c.id}"
-                            th:text="${c.name}">
-                    </option>
-                </select>
-            </td>
-        </tr>
+
         <tr>
             <td></td>
             <td><input type="submit" value="Save"></td>

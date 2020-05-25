@@ -22,6 +22,34 @@ public class LaptopForm {
 
     private Customer customer;
 
+    public LaptopForm() {
+    }
+
+    public LaptopForm(Long id, String name, MultipartFile image, String description, double price, Status status,
+                      Orders orders, Producer producer, Customer customer) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.description = description;
+        this.price = price;
+        this.status = status;
+        this.orders = orders;
+        this.producer = producer;
+        this.customer = customer;
+    }
+
+    public LaptopForm(String name, MultipartFile image, String description, double price, Status status,
+                      Orders orders, Producer producer, Customer customer) {
+        this.name = name;
+        this.image = image;
+        this.description = description;
+        this.price = price;
+        this.status = status;
+        this.orders = orders;
+        this.producer = producer;
+        this.customer = customer;
+    }
+
     public Customer getCustomer() {
         return customer;
     }
