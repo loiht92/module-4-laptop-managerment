@@ -1,13 +1,7 @@
 package com.codegym.laptopmanager.controller;
 
-import com.codegym.laptopmanager.model.Laptop;
-import com.codegym.laptopmanager.model.Orders;
-import com.codegym.laptopmanager.model.Producer;
-import com.codegym.laptopmanager.model.Status;
-import com.codegym.laptopmanager.service.ILaptopService;
-import com.codegym.laptopmanager.service.IOrdersService;
-import com.codegym.laptopmanager.service.IProducerService;
-import com.codegym.laptopmanager.service.IStatusService;
+import com.codegym.laptopmanager.model.*;
+import com.codegym.laptopmanager.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -34,27 +28,34 @@ public class LaptopController {
     @Autowired
     private IProducerService producerService;
 
+    @Autowired
+    private ICustomerService customerService;
+
     @ModelAttribute("statuses")
     public Iterable<Status> statuses(){
         return statusService.findAll();
     }
-
     @ModelAttribute("orders")
     public Page<Orders> orders(Pageable pageable){
         return ordersService.findAll(pageable);
     }
-
     @ModelAttribute("producer")
     public Page<Producer> producers(Pageable pageable){
         return producerService.findAll(pageable);
     }
 
+    @ModelAttribute("customer")
+    public Page<Customer> customers(Pageable pageable){
+        return customerService.findAll(pageable);
+    }
+
     @GetMapping
-    public ModelAndView listCustomer(@RequestParam("name") Optional<String> name,
+    public ModelAndView listLaptop(@RequestParam("name_laptop") Optional<String> name,
                                      @RequestParam(required = false) Long statusId,
+                                   @RequestParam(required = false) Long producerId,
                                      @PageableDefault(size = 3) Pageable pageable) {
         Page<Laptop> laptops;
-        if (name.isPresent()){
+        if (name.isPresent()) {
             laptops = laptopService.findAllByName(name.get(), pageable);
         } else {
             laptops = laptopService.findAll(pageable);
@@ -66,10 +67,18 @@ public class LaptopController {
         if (status.isPresent()) {
             laptops = new PageImpl<>(status.get().getLaptops());
         }
-        ModelAndView modelAndView = new ModelAndView("laptop/list");
-        modelAndView.addObject("laptops", laptops);
-        return modelAndView;
-    }
+
+        Optional<Producer> producer = Objects.nonNull(producerId)
+                ? producerService.findById(producerId)
+                : Optional.empty();
+        if (producer.isPresent()) {
+            laptops = new PageImpl<>(producer.get().getLaptops());
+        }
+            ModelAndView modelAndView = new ModelAndView("laptop/list");
+            modelAndView.addObject("laptops", laptops);
+            return modelAndView;
+        }
+
 
     @GetMapping("/create")
     public ModelAndView showFormCreateLaptop(){

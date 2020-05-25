@@ -30,6 +30,17 @@ public class Laptop {
     @JoinColumn
     private Producer producer;
 
+    @ManyToOne
+    private Customer customer;
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     public Orders getOrders() {
         return orders;
     }

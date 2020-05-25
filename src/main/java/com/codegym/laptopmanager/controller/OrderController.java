@@ -8,6 +8,7 @@ import com.codegym.laptopmanager.service.ICustomerService;
 import com.codegym.laptopmanager.service.IOrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -38,13 +40,25 @@ public class OrderController {
     }
 
     @GetMapping
-    public ModelAndView listOrders(@RequestParam("orders") Optional<String> orders_date, Pageable pageable){
+    public ModelAndView listOrders(
+            @RequestParam("orders") Optional<String> orders_date,
+            @RequestParam(required = false) Long customerId,
+            Pageable pageable){
         Page<Orders> orders;
         if (orders_date .isPresent()){
             orders = ordersService.findAllByDatesOrders(orders_date.get(), pageable);
         }else {
             orders = ordersService.findAll(pageable);
         }
+
+        Optional<Customer> customer = Objects.nonNull(customerId)
+                ? customerService.findById(customerId)
+                : Optional.empty();
+
+        if (customer.isPresent()){
+            orders = new PageImpl<>(customer.get().getOrders());
+        }
+
         ModelAndView modelAndView = new ModelAndView("/orders/list");
         modelAndView.addObject("orders", orders);
         return modelAndView;

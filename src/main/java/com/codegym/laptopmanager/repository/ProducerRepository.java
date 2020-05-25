@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProducerRepository extends PagingAndSortingRepository<Producer, Long> {
     Page<Producer> findAllByName(String name , Pageable pageable);
+    
 }

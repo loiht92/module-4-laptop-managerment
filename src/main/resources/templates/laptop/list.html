@@ -16,18 +16,29 @@ Language: <a href="?lang=en">English</a> | <a href="?lang=vi">Vietnamese</a><br/
 <a href="/laptop"><span th:text="#{laptop.list}"></span></a>
 <form>
     <span th:text="#{laptop.span_label}"></span>
-    <input name="name" type="text">
+    <input name="name_laptop" type="text">
     <input type="submit" th:value="#{laptop.search}">
+</form>
+<form>
+    <select name="statusId">-->
+                <option
+                        th:each="status : ${statuses}"
+                        th:value="${status.id}"
+                        th:text="${status.name}">
+                </option>
+            </select>
+            <input type="submit" th:value="#{laptop.search}">
+</form>
 
-<!--    <select name="provinceId">-->
-<!--        <option-->
-<!--                th:each="province : ${provinces}"-->
-<!--                th:value="${province.id}"-->
-<!--                th:text="${province.name}">-->
-<!--        </option>-->
-<!--    </select>-->
-<!--    <input type="submit" th:value="#{customer.search}">-->
-
+<form>
+        <select name="producerId">
+            <option
+                    th:each="p : ${producer}"
+                    th:value="${p.id}"
+                    th:text="${p.name}">
+            </option>
+        </select>
+        <input type="submit" th:value="#{laptop.search}">
 </form>
 
 <div class="notify">
@@ -48,6 +59,7 @@ Language: <a href="?lang=en">English</a> | <a href="?lang=vi">Vietnamese</a><br/
             <th th:text="#{laptop.th_label8}"></th>
             <th th:text="#{laptop.th_label9}"></th>
             <th th:text="#{laptop.th_label10}"></th>
+            <th th:text="#{laptop.th_label11}"></th>
 
         </tr>
         <tr th:each="l : ${laptops} ">
@@ -58,9 +70,12 @@ Language: <a href="?lang=en">English</a> | <a href="?lang=vi">Vietnamese</a><br/
             <td th:text="${l.status.name}"></td>
             <td th:text="${l.orders.customerDates}"></td>
             <td th:text="${l.producer.name}"></td>
-            <td><a th:href="@{/laptop/edit/{id}(id=${l.getId()})}"><span th:text="#{laptop.th_label8}"></span></a></td>
-            <td><a th:href="@{/laptop/delete/{id}(id=${l.getId()})}"><span th:text="#{laptop.th_label9}"></span></a></td>
-            <td><a th:href="@{/laptop/view/{id}(id=${l.getId()})}"><span th:text="#{laptop.th_label10}"></span></a></td>
+            <td th:text="${l.customer.name}"></td>
+            <td th:text="${l.customer.phone}"></td>
+            <td th:text="${l.customer.address}"></td>
+            <td><a th:href="@{/laptop/edit/{id}(id=${l.getId()})}"><span th:text="#{laptop.th_label9}"></span></a></td>
+            <td><a th:href="@{/laptop/delete/{id}(id=${l.getId()})}"><span th:text="#{laptop.th_label10}"></span></a></td>
+            <td><a th:href="@{/laptop/view/{id}(id=${l.getId()})}"><span th:text="#{laptop.th_label11}"></span></a></td>
         </tr>
     </table>
 </div>
@@ -68,7 +83,6 @@ Language: <a href="?lang=en">English</a> | <a href="?lang=vi">Vietnamese</a><br/
     <a th:href="@{'/laptop'(page=${laptops.number - 1})}" th:if="${laptops.hasPrevious()}"><span th:text="#{laptop.previous}"></span></a>
     <span th:text="${laptops.number + 1}"></span>/<span th:text="${laptops.totalPages}"></span>
     <a th:href="@{'/laptop'(page=${laptops.number + 1})}" th:if="${laptops.hasNext()}"><span th:text="#{laptop.next}"></span></a>
-</div>
 </div>
 </body>
 </html>

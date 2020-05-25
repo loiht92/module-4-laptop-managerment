@@ -1,6 +1,7 @@
 package com.codegym.laptopmanager.controller;
 
 import com.codegym.laptopmanager.model.Producer;
+import com.codegym.laptopmanager.service.ILaptopService;
 import com.codegym.laptopmanager.service.IProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,6 +20,10 @@ public class ProducerController {
     @Autowired
     private IProducerService producerService;
 
+    @Autowired
+    private ILaptopService laptopService;
+
+
     @GetMapping
     public ModelAndView listProducer(@RequestParam("name") Optional<String> name, @PageableDefault(size = 10)Pageable pageable){
         Page<Producer> producers;
@@ -27,6 +32,7 @@ public class ProducerController {
         }else {
             producers = producerService.findAll(pageable);
         }
+
         ModelAndView modelAndView = new ModelAndView("producer/list");
         modelAndView.addObject("producers", producers);
         return modelAndView;
