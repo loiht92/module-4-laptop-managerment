@@ -10,12 +10,16 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -57,9 +61,8 @@ public class LaptopController {
     }
 
     @GetMapping
-    public ModelAndView listLaptop(@RequestParam("name_laptop") Optional<String> name,
+    public ModelAndView listLaptop(@RequestParam("laptop") Optional<String> name,
                                      @RequestParam(required = false) Long statusId,
-                                   @RequestParam(required = false) Long producerId,
                                      @PageableDefault(size = 3) Pageable pageable) {
         Page<Laptop> laptops;
         if (name.isPresent()) {
@@ -75,12 +78,6 @@ public class LaptopController {
             laptops = new PageImpl<>(status.get().getLaptops());
         }
 
-        Optional<Producer> producer = Objects.nonNull(producerId)
-                ? producerService.findById(producerId)
-                : Optional.empty();
-        if (producer.isPresent()) {
-            laptops = new PageImpl<>(producer.get().getLaptops());
-        }
             ModelAndView modelAndView = new ModelAndView("laptop/list");
             modelAndView.addObject("laptops", laptops);
             return modelAndView;
@@ -99,7 +96,20 @@ public class LaptopController {
         if (bindingResult.hasErrors()){
             System.out.println("Result Error Occured" + bindingResult.getAllErrors());
         }
+        //Lay ten file
+        MultipartFile multipartFile = laptopForm.getImage();
+        String fileName = multipartFile.getOriginalFilename();
+        String fileUpload = environment.getProperty("file_upload").toString();
 
+        //Luu file len server
+        try {
+            FileCopyUtils.copy(laptopForm.getImage().getBytes(), new File(fileUpload + fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //Tao doi tuong de luu vao database
+        Laptop laptop = new Laptop(laptopForm.getName(),fileName, laptopForm.getDescription(), laptopForm.getPrice(), laptopForm.getStatus(), laptopForm.getOrders(), laptopForm.getProducer(), laptopForm.getCustomer());
+        laptopService.save(laptop);
         redirect.addFlashAttribute("message", "create laptop successfully !");
         return new RedirectView("/laptop");
     }
@@ -110,6 +120,7 @@ public class LaptopController {
 
         LaptopForm laptopForm = new LaptopForm();
         if (laptop.isPresent()){
+        laptopForm.setId(laptop.get().getId());
         laptopForm.setName(laptop.get().getName());
         laptopForm.setDescription(laptop.get().getDescription());
         laptopForm.setPrice(laptop.get().getPrice());
@@ -127,10 +138,31 @@ public class LaptopController {
     }
 
     @PostMapping("/edit")
-    public RedirectView updateLaptop(@ModelAttribute("laptop") Laptop laptop, RedirectAttributes redirect){
-        laptopService.save(laptop);
-        redirect.addFlashAttribute("message","edit laptop successfully !");
-        return new RedirectView("/laptop");
+    public RedirectView updateLaptop(@ModelAttribute("laptopForm") LaptopForm laptopForm, BindingResult bindingResult, RedirectAttributes redirect){
+        if (bindingResult.hasErrors()){
+            System.out.println("Result Error Occured" + bindingResult.getAllErrors());
+        }
+        MultipartFile multipartFile = laptopForm.getImage();
+        String fileName = multipartFile.getOriginalFilename();
+        String fileUpload = environment.getProperty("file_upload").toString();
+
+        if (fileName.equals("")){
+            Laptop laptop = new Laptop(laptopForm.getId(), laptopForm.getName(),fileName, laptopForm.getDescription(), laptopForm.getPrice(), laptopForm.getStatus(), laptopForm.getOrders(), laptopForm.getProducer(), laptopForm.getCustomer());
+            laptopService.save(laptop);
+            redirect.addFlashAttribute("message","edit laptop error !");
+            return new RedirectView("/laptop");
+        }
+        else {
+            try {
+                FileCopyUtils.copy(laptopForm.getImage().getBytes(), new File(fileUpload + fileName));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Laptop laptop = new Laptop(laptopForm.getId(), laptopForm.getName(),fileName, laptopForm.getDescription(), laptopForm.getPrice(), laptopForm.getStatus(), laptopForm.getOrders(), laptopForm.getProducer(), laptopForm.getCustomer());
+            laptopService.save(laptop);
+            redirect.addFlashAttribute("message","edit laptop successfully !");
+            return new RedirectView("/laptop");
+        }
     }
 
     @GetMapping("/delete/{id}")

@@ -24,6 +24,30 @@
         <td>Price:</td>
         <td th:text="${laptop.getPrice()}"></td>
     </tr>
+    <tr>
+        <td>Status:</td>
+        <td th:text="${laptop.status.getName()}"></td>
+    </tr>
+    <tr>
+        <td>Orders:</td>
+        <td th:text="${laptop.orders.getCustomerDates()}"></td>
+    </tr>
+    <tr>
+        <td>Producer:</td>
+        <td th:text="${laptop.producer.getName()}"></td>
+    </tr>
+    <tr>
+        <td>Customer Name:</td>
+        <td th:text="${laptop.customer.getName()}"></td>
+    </tr>
+    <tr>
+        <td>Phone:</td>
+        <td th:text="${laptop.customer.getPhone()}"></td>
+    </tr>
+    <tr>
+        <td>Address:</td>
+        <td th:text="${laptop.customer.getAddress()}"></td>
+    </tr>
 </table>
 </body>
 </html>

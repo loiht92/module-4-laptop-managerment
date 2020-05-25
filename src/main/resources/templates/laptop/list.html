@@ -16,30 +16,30 @@ Language: <a href="?lang=en">English</a> | <a href="?lang=vi">Vietnamese</a><br/
 <a href="/laptop"><span th:text="#{laptop.list}"></span></a>
 <form>
     <span th:text="#{laptop.span_label}"></span>
-    <input name="name_laptop" type="text">
+    <input name="laptop" type="text">
     <input type="submit" th:value="#{laptop.search}">
 </form>
 <form>
-    <select name="statusId">-->
-                <option
-                        th:each="status : ${statuses}"
-                        th:value="${status.id}"
-                        th:text="${status.name}">
-                </option>
-            </select>
-            <input type="submit" th:value="#{laptop.search}">
+    <select name="statusId">
+        <option
+                th:each="status : ${statuses}"
+                th:value="${status.id}"
+                th:text="${status.name}">
+        </option>
+    </select>
+    <input type="submit" th:value="#{laptop.search}">
 </form>
 
-<form>
-        <select name="producerId">
-            <option
-                    th:each="p : ${producer}"
-                    th:value="${p.id}"
-                    th:text="${p.name}">
-            </option>
-        </select>
-        <input type="submit" th:value="#{laptop.search}">
-</form>
+<!--<form>-->
+<!--    <select name="producerId">-->
+<!--        <option-->
+<!--                th:each="produc : ${producer}"-->
+<!--                th:value="${produc.id}"-->
+<!--                th:text="${produc.name}">-->
+<!--        </option>-->
+<!--    </select>-->
+<!--    <input type="submit" th:value="#{laptop.search}">-->
+<!--</form>-->
 
 <div class="notify">
     <div th:if="${message}">

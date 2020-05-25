@@ -12,24 +12,24 @@
     <p th:text="${message}"></p>
 </th:block>
 
-<form th:action="@{/laptop/edit}" th:object="${laptop}" method="post">
+<form th:action="@{/laptop/edit}" th:object="${laptopForm}" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>
             <td>Name:</td>
-            <td><input type="text" name="name" th:value="${laptop.name}"></td>
+            <td><input type="text" name="name" th:value="${laptopForm.name}"></td>
         </tr>
         <tr>
             <td>Image:</td>
-            <td><input type="text" name="image" th:value="${laptop.image}"></td>
+            <td><input type="file" name="image" th:value="${laptopForm.image}" multiple></td>
         </tr>
         <tr>
             <td>Description:</td>
-            <td><input type="text" name="description" th:value="${laptop.description}"></td>
+            <td><input type="text" name="description" th:value="${laptopForm.description}"></td>
         </tr>
         <tr>
             <td>Price:</td>
-            <td><input type="text" name="price" th:value="${laptop.price}"></td>
+            <td><input type="text" name="price" th:value="${laptopForm.price}"></td>
         </tr>
         <tr>
             <td>Status:</td>
@@ -63,6 +63,54 @@
                             th:each="p : ${producer}"
                             th:value="${p.id}"
                             th:text="${p.name}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Customer Name:</td>
+            <td>
+                <select name="name" th:field="*{customer}">
+                    <option
+                            th:each="c : ${customers}"
+                            th:value="${c.id}"
+                            th:text="${c.name}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Phone:</td>
+            <td>
+                <select name="phone" th:field="*{customer}">
+                    <option
+                            th:each="c : ${customers}"
+                            th:value="${c.id}"
+                            th:text="${c.phone}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td>
+                <select name="email" th:field="*{customer}">
+                    <option
+                            th:each="c : ${customers}"
+                            th:value="${c.id}"
+                            th:text="${c.email}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td>
+                <select name="address" th:field="*{customer}">
+                    <option
+                            th:each="c : ${customers}"
+                            th:value="${c.id}"
+                            th:text="${c.address}">
                     </option>
                 </select>
             </td>
