@@ -10,16 +10,12 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -103,20 +99,7 @@ public class LaptopController {
         if (bindingResult.hasErrors()){
             System.out.println("Result Error Occured" + bindingResult.getAllErrors());
         }
-        //Lay ten file
-        MultipartFile multipartFile = laptopForm.getImage();
-        String fileName = multipartFile.getOriginalFilename();
-        String fileUpload = environment.getProperty("file_upload").toString();
 
-        //Luu file len server
-        try {
-            FileCopyUtils.copy(laptopForm.getImage().getBytes(), new File(fileUpload + fileName));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //Tao doi tuong de luu vao database
-        Laptop laptop = new Laptop(laptopForm.getName(),fileName, laptopForm.getDescription(), laptopForm.getPrice(), laptopForm.getStatus(), laptopForm.getOrders(), laptopForm.getProducer(), laptopForm.getCustomer());
-        laptopService.save(laptop);
         redirect.addFlashAttribute("message", "create laptop successfully !");
         return new RedirectView("/laptop");
     }
