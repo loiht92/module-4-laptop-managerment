@@ -3,6 +3,7 @@ package com.codegym.laptopmanager.controller;
 import com.codegym.laptopmanager.model.*;
 import com.codegym.laptopmanager.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +18,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Controller
+@PropertySource("classpath:global_config_app.properties")
 @RequestMapping("/laptop")
 public class LaptopController {
     @Autowired
