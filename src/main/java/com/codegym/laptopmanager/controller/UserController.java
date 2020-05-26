@@ -13,16 +13,6 @@ public class UserController {
     @Autowired
     private PasswordEncoder bCryptPasswordEncoder;
 
-//    @PostMapping("/register")
-//    public ModelAndView processRegister(@ModelAttribute("appUser")AppUser appUser){
-//        List<GrantedAuthority> authorities = new ArrayList<>();
-//        authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-//
-//        appUser.getUsername();
-//        return (ModelAndView) authorities;
-//    }
-    //
-
     @GetMapping("/")
     public String index() {
         return "index";
@@ -30,23 +20,14 @@ public class UserController {
 
     @GetMapping("/user")
     public String user(Principal principal) {
-        // Get authenticated user name from Principal
         System.out.println(principal.getName());
-        return "login/user";
+        return "login/login-user";
     }
 
     @GetMapping("/admin")
     public String admin(Principal principal) {
         // Get authenticated user name from Principal
         System.out.println(principal.getName());
-        return "login/admin";
+       return "login/admin";
     }
-
-
-
-
-//    @GetMapping("/accessDenied")
-//    public String error() {
-//        return "/accessDenied";
-//    }
 }
