@@ -331,17 +331,20 @@ a:hover {
 	padding: 20px 0 20px 0;
 	border-top: 1px solid #E5E5E5;
 	color: #757E82;
+	background: #DE1C1D;
 }
 
 #footer p {
 	margin: 0;
 	text-align: center;
-	font-size: 77%;
+	font-size: 15px;
+	color: white;
 }
 
 #footer a {
 	text-decoration: underline;
-	color: #757E82;
+	color: white;
+	font-size: 15px;
 }
 
 #footer a:hover {
