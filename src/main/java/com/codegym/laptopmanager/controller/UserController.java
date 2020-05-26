@@ -21,7 +21,7 @@ public class UserController {
     @GetMapping("/user")
     public String user(Principal principal) {
         System.out.println(principal.getName());
-        return "login/login-user";
+        return "login/user";
     }
 
     @GetMapping("/admin")
