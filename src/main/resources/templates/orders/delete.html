@@ -1,27 +1,81 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Delete Orders</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Vestibule  by TEMPLATED</title>
+    <link href="http://fonts.googleapis.com/css?family=Oxygen:400,700,300" rel="stylesheet" type="text/css" />
+    <script src="../js-customer-list/js.js"></script>
+    <link href="/css-customer-list/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
-<h1>Delete Orders</h1>
-<h2>Are you sure?</h2>
-<p>
-    <a href="/orders">Orders list</a>
-</p>
-<form th:action="@{/orders/delete}" th:object="${orders}" method="post">
-    <input th:type="hidden" name="id" th:field="*{id}">
-    <table>
-        <tr>
-            <td>Customer Date:</td>
-            <td th:text="${orders.customerDates}"></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Delete customer"></td>
-        </tr>
-    </table>
-</form>
+<div class="container">
+    <div id="menu-wrapper">
+        <div id="menu" class="container">
+            <ul>
+                <li class="current_page_item"><a href="/admin">Homepage</a></li>
+                <li><a href="/orders">List Orders</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Photos</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Links</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--/*@thymesVar id="message" type="java"*/-->
+    <th:block th:if="${message}">-->
+        <p th:text="${message}"></p>
+    </th:block>
+    <div>
+        <form th:action="@{/orders/delete}" th:object="${orders}" method="post" action="edit">
+            <input type="hidden" name="id" th:field="*{id}">
+            <div class="form-group">
+                <label style="padding-left: 20px" for="usr">Name:</label>
+                <input type="text" placeholder="Enter Name" class="form-control" id="usr" name="name"
+                       th:value="${orders.customerDates}">
+            </div>
+            <button type="submit" class="btn btn-primary">Delete Customer</button>
+        </form>
+
+    </div>
+    <div id="footer">
+        <p>© 2013 Untitled Inc. All rights reserved. Lorem ipsum dolor sit amet nullam blandit consequat phasellus etiam lorem. Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.  Photos by <a href="http://fotogrph.com/">Fotogrph</a>.</p>
+    </div>
+</div>
 </body>
 </html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Delete Orders</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Delete Orders</h1>-->
+<!--<h2>Are you sure?</h2>-->
+<!--<p>-->
+<!--    <a href="/orders">Orders list</a>-->
+<!--</p>-->
+<!--<form th:action="@{/orders/delete}" th:object="${orders}" method="post">-->
+<!--    <input th:type="hidden" name="id" th:field="*{id}">-->
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <td>Customer Date:</td>-->
+<!--            <td th:text="${orders.customerDates}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td></td>-->
+<!--            <td><input type="submit" value="Delete customer"></td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->

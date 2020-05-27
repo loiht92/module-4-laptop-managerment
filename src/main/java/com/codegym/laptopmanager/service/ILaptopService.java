@@ -1,5 +1,6 @@
 package com.codegym.laptopmanager.service;
 
+import com.codegym.laptopmanager.model.Customer;
 import com.codegym.laptopmanager.model.Laptop;
 import com.codegym.laptopmanager.model.Status;
 import org.springframework.data.domain.Page;
@@ -9,6 +10,8 @@ import java.util.Optional;
 
 public interface ILaptopService {
     Page<Laptop> findAll(Pageable pageable);
+
+    Iterable<Laptop> findAllByCustomer(Customer customer);
 
     Page<Laptop> findAllByName(String name, Pageable pageable);
 

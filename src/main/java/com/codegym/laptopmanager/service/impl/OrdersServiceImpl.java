@@ -1,5 +1,6 @@
 package com.codegym.laptopmanager.service.impl;
 
+import com.codegym.laptopmanager.model.Customer;
 import com.codegym.laptopmanager.model.Orders;
 import com.codegym.laptopmanager.repository.OrdersRepository;
 import com.codegym.laptopmanager.service.IOrdersService;
@@ -8,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -19,6 +19,11 @@ public class OrdersServiceImpl implements IOrdersService {
     @Override
     public Page<Orders> findAll(Pageable pageable) {
         return ordersRepository.findAll(pageable);
+    }
+
+    @Override
+    public Iterable<Orders> findAllByCustomer(Customer customer) {
+        return ordersRepository.findAllByCustomer(customer);
     }
 
     @Override

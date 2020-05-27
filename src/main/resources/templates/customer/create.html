@@ -1,38 +1,67 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Create customer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Vestibule  by TEMPLATED</title>
+    <link href="http://fonts.googleapis.com/css?family=Oxygen:400,700,300" rel="stylesheet" type="text/css" />
+    <script src="../js-customer-list/js.js"></script>
+    <link href="/css-customer-list/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
-<h1>Create customer</h1>
-<p>
-    <a href="/customer">Producer list</a>
-</p>
+<div class="container">
+    <div id="menu-wrapper">
+        <div id="menu" class="container">
+            <ul>
+                <li class="current_page_item"><a href="/admin">Homepage</a></li>
+                <li><a href="/customer">List Customers</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Photos</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Links</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--/*@thymesVar id="message" type="java"*/-->
+    <th:block th:if="${message}">
+        <p th:text="${message}"></p>
+    </th:block>
+    <div>
+        <form th:action="@{/customer/creates}" method="post" th:object="${customer}">
+            <div class="form-group">
+                <label style="padding-left: 20px" for="usr">Name:</label>
+                <input style="padding-left: 20px" type="text" placeholder="Enter Name" class="form-control" id="usr" name="name"
+                       th:field="*{name}">
+            </div>
+            <div class="form-group">
+                <label style="padding-left: 20px" for="p">Phone:</label>
+                <input style="padding-left: 20px" type="text" placeholder="Enter Phone" class="form-control" id="p" name="phone"
+                       th:field="*{phone}">
+            </div>
+            <div class="form-group">
+                <label style="padding-left: 20px" for="em">Email:</label>
+                <input style="padding-left: 20px" type="text" placeholder="Enter Email" class="form-control" id="em" name="email"
+                       th:field="*{email}">
+            </div>
+            <div class="form-group">
+                <label style="padding-left: 20px" for="ad">Address:</label>
+                <input style="padding-left: 20px" type="text" placeholder="Enter Address" class="form-control" id="ad" name="address"
+                       th:field="*{address}">
+            </div>
+            <button type="submit" class="btn btn-primary">Create Customer</button>
+            </form>
 
-<form th:action="@{/customer/creates}" method="post" th:object="${customer}">
-    <table>
-        <tr>
-            <td>Name:</td>
-            <td><input type="text" th:field="*{name}"/></td>
-        </tr>
-        <tr>
-            <td>Phone:</td>
-            <td><input type="text" th:field="*{phone}"/></td>
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td><input type="text" th:field="*{email}"/></td>
-        </tr>
-        <tr>
-            <td>Address:</td>
-            <td><input type="text" th:field="*{address}"/></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Save"></td>
-        </tr>
-    </table>
-</form>
+    </div>
+    <div id="footer">
+        <p>© 2013 Untitled Inc. All rights reserved. Lorem ipsum dolor sit amet nullam blandit consequat phasellus etiam lorem. Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.  Photos by <a href="http://fotogrph.com/">Fotogrph</a>.</p>
+    </div>
+</div>
 </body>
 </html>

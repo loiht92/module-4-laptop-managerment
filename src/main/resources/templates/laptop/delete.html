@@ -1,67 +1,108 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Delete Laptop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Vestibule  by TEMPLATED</title>
+    <link href="http://fonts.googleapis.com/css?family=Oxygen:400,700,300" rel="stylesheet" type="text/css" />
+    <script src="../js-customer-list/js.js"></script>
+    <link href="/css-customer-list/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
-<h1>Delete Laptop</h1>
-<h2>Are you sure?</h2>
-<p>
-    <a href="/laptop">Laptop list</a>
-</p>
-<form th:action="@{/laptop/delete}" th:object="${laptop}" method="post">
-    <input th:type="hidden" name="id" th:field="*{id}">
-    <table>
-        <tr>
-            <td>Name:</td>
-            <td th:text="${laptop.name}"></td>
-        </tr>
-        <tr>
-            <td>Image:</td>
-            <td th:text="${laptop.image}"></td>
-        </tr>
-        <tr>
-            <td>Description:</td>
-            <td th:text="${laptop.description}"></td>
-        </tr>
-        <tr>
-            <td>Price:</td>
-            <td th:text="${laptop.price}"></td>
-        </tr>
-        <tr>
-            <td>Status:</td>
-            <td th:text="${laptop.status.name}"></td>
-        </tr>
-        <tr>
-            <td>Orders:</td>
-            <td th:text="${laptop.orders.getCustomerDates()}"></td>
-        </tr>
-        <tr>
-            <td>Producer:</td>
-            <td th:text="${laptop.producer.name}"></td>
-        </tr>
-        <tr>
-            <td>Customer Name:</td>
-            <td th:text="${laptop.customer.name}"></td>
-        </tr>
-        <tr>
-            <td>Phone:</td>
-            <td th:text="${laptop.customer.phone}"></td>
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td th:text="${laptop.customer.email}"></td>
-        </tr>
-        <tr>
-            <td>Address:</td>
-            <td th:text="${laptop.customer.address}"></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Delete laptop"></td>
-        </tr>
-    </table>
-</form>
+<div class="container">
+    <div id="menu-wrapper">
+        <div id="menu" class="container">
+            <ul>
+                <li class="current_page_item"><a href="/admin">Homepage</a></li>
+                <li><a href="/customer">List Customers</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Photos</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Links</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--/*@thymesVar id="message" type="java"*/-->
+    <th:block th:if="${message}">-->
+        <p th:text="${message}"></p>
+    </th:block>
+    <div>
+        <form th:action="@{/laptop/delete}" th:object="${laptop}" method="post" action="edit">
+            <input type="hidden" name="id" th:field="*{id}">
+            <div class="form-group">
+                <label style="padding-left: 20px" for="usr">Name:</label>
+                <input type="text" placeholder="Enter Name" class="form-control" id="usr" name="name"
+                       th:value="${laptop.name}">
+            </div>
+            <div class="form-group">
+                <label style="padding-left: 20px" for="p">Image:</label>
+                <input type="text" placeholder="Enter Phone" class="form-control" id="p" name="image"
+                       th:value="${laptop.image}">
+            </div>
+            <div class="form-group">
+                <label style="padding-left: 20px" for="em">Description:</label>
+                <input type="text" placeholder="Enter Email" class="form-control" id="em" name="description"
+                       th:value="${laptop.description}">
+            </div>
+            <div class="form-group">
+                <label style="padding-left: 20px" for="ad">Price:</label>
+                <input type="text" placeholder="Enter Address" class="form-control" id="ad" name="price"
+                       th:value="${laptop.price}">
+            </div>
+            <div class="form-group">
+                <label style="padding-left: 20px" for="ad">Status:</label>
+                <input type="text" placeholder="Enter Address" class="form-control" id="" name="name"
+                       th:value="${laptop.status.name}">
+            </div>
+            <div class="form-group">
+                <label style="padding-left: 20px" for="ad">Status:</label>
+                <input type="text" placeholder="Enter Address" class="form-control" id="1" name="name"
+                       th:value="${laptop.status.name}">
+            </div>
+            <div class="form-group">
+                <label style="padding-left: 20px" for="ad">Orders:</label>
+                <input type="text" placeholder="Enter Address" class="form-control" id="2" name="name"
+                       th:value="${laptop.orders.customerDates}">
+            </div>
+            <div class="form-group">
+                <label style="padding-left: 20px" for="ad">Producer:</label>
+                <input type="text" placeholder="Enter Address" class="form-control" id="3" name="name"
+                       th:value="${laptop.producer.name}">
+            </div>
+            <div class="form-group">
+                <label style="padding-left: 20px" for="ad">Customer Name:</label>
+                <input type="text" placeholder="Enter Address" class="form-control" id="4" name="name"
+                       th:value="${laptop.customer.name}">
+            </div>
+            <div class="form-group">
+                <label style="padding-left: 20px" for="ad">Phone:</label>
+                <input type="text" placeholder="Enter Address" class="form-control" id="5" name="name"
+                       th:value="${laptop.customer.phone}">
+            </div>
+            <div class="form-group">
+                <label style="padding-left: 20px" for="ad">Email:</label>
+                <input type="text" placeholder="Enter Address" class="form-control" id="6" name="name"
+                       th:value="${laptop.customer.email}">
+            </div>
+            <div class="form-group">
+                <label style="padding-left: 20px" for="ad">Address:</label>
+                <input type="text" placeholder="Enter Address" class="form-control" id="7" name="name"
+                       th:value="${laptop.customer.address}">
+            </div>
+            <button type="submit" class="btn btn-primary">Delete Laptops</button>
+        </form>
+
+    </div>
+    <div id="footer">
+        <p>© 2013 Untitled Inc. All rights reserved. Lorem ipsum dolor sit amet nullam blandit consequat phasellus etiam lorem. Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.  Photos by <a href="http://fotogrph.com/">Fotogrph</a>.</p>
+    </div>
+</div>
 </body>
 </html>

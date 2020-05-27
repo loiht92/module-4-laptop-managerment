@@ -1,93 +1,183 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-seurity">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Vestibule  by TEMPLATED</title>
+    <link href="http://fonts.googleapis.com/css?family=Oxygen:400,700,300" rel="stylesheet" type="text/css" />
+    <link href="/css-customer-list/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
+<div id="wrapper">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-<br/>
-<div>
-    <a th:href="@{/list}">Home</a> | <a th:href="@{/logout}">Logout</a>
+        <a class="navbar-brand" href="#"><i class='fas fa-cannabis' style='font-size:40px;color:red'></i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!--            <div id="menu" class="container">-->
+            <ul>
+                <li class="current_page_item"><a href="/admin">Homepage</a></li>
+                <li><a href="/laptop">List Laptops</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>&ensp;&ensp;&ensp;&ensp;&ensp;
+            <a href="/laptop/create" class="btn btn-info" role="button"> + Add Customer</a>&ensp;&ensp;&ensp;&ensp;&ensp;
+            Language: <a href="?lang=en">English</a> | <a href="?lang=vi">Vietnamese</a>&ensp;&ensp;&ensp;&ensp;&ensp;
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="laptop">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <table border="1" id="dtBasicExample" class="table" cellspacing="0" width="100%">
+        <tr style="background: #2f7dfc" >
+            <th th:text="#{laptop.th_label1}"></th>
+                        <th th:text="#{laptop.th_label2}"></th>
+                        <th th:text="#{laptop.th_label3}"></th>
+                        <th th:text="#{laptop.th_label4}"></th>
+                        <th th:text="#{laptop.th_label5}"></th>
+                        <th th:text="#{laptop.th_label6}"></th>
+                        <th th:text="#{laptop.th_label7}"></th>
+                        <th th:text="#{laptop.th_label8}"></th>
+                        <th th:text="#{laptop.th_label9}"></th>
+                        <th th:text="#{laptop.th_label10}"></th>
+                        <th th:text="#{laptop.th_label11}"></th>
+                        <th th:text="#{laptop.th_label12}"></th>
+                        <th th:text="#{laptop.th_label13}"></th>
+        </tr>
+        <tr th:each="l : ${laptops} ">
+                        <td th:text="${l.name}"></td>
+                         <td>
+                        <img th:src="@{'/a/' + ${l.image}}" width="200px" height="auto">
+                         </td>
+
+                        <td th:text="${l.description}"></td>
+                        <td th:text="${l.price}"></td>
+                        <td th:text="${l.status.name}"></td>
+                        <td th:text="${l.orders.customerDates}"></td>
+                        <td th:text="${l.producer.name}"></td>
+                        <td th:text="${l.customer.name}"></td>
+                        <td th:text="${l.customer.phone}"></td>
+                        <td th:text="${l.customer.address}"></td>
+                        <td><a th:href="@{/laptop/edit/{id}(id=${l.getId()})}"><span th:text="#{laptop.th_label11}"></span></a></td>
+                        <td><a th:href="@{/laptop/delete/{id}(id=${l.getId()})}"><span th:text="#{laptop.th_label12}"></span></a></td>
+                        <td><a th:href="@{/laptop/view/{id}(id=${l.getId()})}"><span th:text="#{laptop.th_label13}"></span></a></td>
+                    </tr>
+    </table>
 </div>
-Language: <a href="?lang=en">English</a> | <a href="?lang=vi">Vietnamese</a><br/>
-<a href="/laptop/create"><span th:text="#{laptop.create}"></span></a><br/>
-<a href="/laptop"><span th:text="#{laptop.list}"></span></a>
-<form>
-    <span th:text="#{laptop.span_label}"></span>
-    <input name="laptop" type="text">
-    <input type="submit" th:value="#{laptop.search}">
-</form>
-<form>
-    <select name="statusId">
-        <option
-                th:each="status : ${statuses}"
-                th:value="${status.id}"
-                th:text="${status.name}">
-        </option>
-    </select>
-    <input type="submit" th:value="#{laptop.search}">
-</form>
+<div>
+    <a th:href="@{'/laptop'(page=${laptops.number - 1})}" th:if="${laptops.hasPrevious()}"><span th:text="#{laptop.previous}"></span></a>
+        <span th:text="${laptops.number + 1}"></span>/<span th:text="${laptops.totalPages}"></span>
+        <a th:href="@{'/laptop'(page=${laptops.number + 1})}" th:if="${laptops.hasNext()}"><span th:text="#{laptop.next}"></span></a>
+</div>
+<div id="footer">
+    <p>© 2013 Untitled Inc. All rights reserved. Lorem ipsum dolor sit amet nullam blandit consequat phasellus etiam lorem. Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.  Photos by <a href="http://fotogrph.com/">Fotogrph</a>.</p>
+</div>
+</body>
+</html>
 
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:sec="http://www.thymeleaf.org/extras/spring-seurity">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<br/>-->
+<!--<div>-->
+<!--    <a th:href="@{/list}">Home</a> | <a th:href="@{/logout}">Logout</a>-->
+<!--</div>-->
+<!--Language: <a href="?lang=en">English</a> | <a href="?lang=vi">Vietnamese</a><br/>-->
+<!--<a href="/laptop/create"><span th:text="#{laptop.create}"></span></a><br/>-->
+<!--<a href="/laptop"><span th:text="#{laptop.list}"></span></a>-->
 <!--<form>-->
-<!--    <select name="producerId">-->
+<!--    <span th:text="#{laptop.span_label}"></span>-->
+<!--    <input name="laptop" type="text">-->
+<!--    <input type="submit" th:value="#{laptop.search}">-->
+<!--</form>-->
+<!--<form>-->
+<!--    <select name="statusId">-->
 <!--        <option-->
-<!--                th:each="produc : ${producer}"-->
-<!--                th:value="${produc.id}"-->
-<!--                th:text="${produc.name}">-->
+<!--                th:each="status : ${statuses}"-->
+<!--                th:value="${status.id}"-->
+<!--                th:text="${status.name}">-->
 <!--        </option>-->
 <!--    </select>-->
 <!--    <input type="submit" th:value="#{laptop.search}">-->
 <!--</form>-->
 
-<div class="notify">
-    <div th:if="${message}">
-        <!--/*@thymesVar id="message" type="Gom.codegym.AppConfiguration"*/-->
-        <span th:text="${message}"></span>
-    </div>
-    <h1><span th:text="#{laptop.h1}"></span></h1>
-    <table border="1" >
-        <tr>
-            <th th:text="#{laptop.th_label1}"></th>
-            <th th:text="#{laptop.th_label2}"></th>
-            <th th:text="#{laptop.th_label3}"></th>
-            <th th:text="#{laptop.th_label4}"></th>
-            <th th:text="#{laptop.th_label5}"></th>
-            <th th:text="#{laptop.th_label6}"></th>
-            <th th:text="#{laptop.th_label7}"></th>
-            <th th:text="#{laptop.th_label8}"></th>
-            <th th:text="#{laptop.th_label9}"></th>
-            <th th:text="#{laptop.th_label10}"></th>
-            <th th:text="#{laptop.th_label11}"></th>
-            <th th:text="#{laptop.th_label12}"></th>
-            <th th:text="#{laptop.th_label13}"></th>
+<!--&lt;!&ndash;<form>&ndash;&gt;-->
+<!--&lt;!&ndash;    <select name="producerId">&ndash;&gt;-->
+<!--&lt;!&ndash;        <option&ndash;&gt;-->
+<!--&lt;!&ndash;                th:each="produc : ${producer}"&ndash;&gt;-->
+<!--&lt;!&ndash;                th:value="${produc.id}"&ndash;&gt;-->
+<!--&lt;!&ndash;                th:text="${produc.name}">&ndash;&gt;-->
+<!--&lt;!&ndash;        </option>&ndash;&gt;-->
+<!--&lt;!&ndash;    </select>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="submit" th:value="#{laptop.search}">&ndash;&gt;-->
+<!--&lt;!&ndash;</form>&ndash;&gt;-->
 
-        </tr>
-        <tr th:each="l : ${laptops} ">
-            <td th:text="${l.name}"></td>
-             <td>
-            <img th:src="@{'/a/' + ${l.image}}" width="200px" height="auto">
-             </td>
+<!--<div class="notify">-->
+<!--    <div th:if="${message}">-->
+<!--        &lt;!&ndash;/*@thymesVar id="message" type="Gom.codegym.AppConfiguration"*/&ndash;&gt;-->
+<!--        <span th:text="${message}"></span>-->
+<!--    </div>-->
+<!--    <h1><span th:text="#{laptop.h1}"></span></h1>-->
+<!--    <table border="1" >-->
+<!--        <tr>-->
+<!--            <th th:text="#{laptop.th_label1}"></th>-->
+<!--            <th th:text="#{laptop.th_label2}"></th>-->
+<!--            <th th:text="#{laptop.th_label3}"></th>-->
+<!--            <th th:text="#{laptop.th_label4}"></th>-->
+<!--            <th th:text="#{laptop.th_label5}"></th>-->
+<!--            <th th:text="#{laptop.th_label6}"></th>-->
+<!--            <th th:text="#{laptop.th_label7}"></th>-->
+<!--            <th th:text="#{laptop.th_label8}"></th>-->
+<!--            <th th:text="#{laptop.th_label9}"></th>-->
+<!--            <th th:text="#{laptop.th_label10}"></th>-->
+<!--            <th th:text="#{laptop.th_label11}"></th>-->
+<!--            <th th:text="#{laptop.th_label12}"></th>-->
+<!--            <th th:text="#{laptop.th_label13}"></th>-->
 
-            <td th:text="${l.description}"></td>
-            <td th:text="${l.price}"></td>
-            <td th:text="${l.status.name}"></td>
-            <td th:text="${l.orders.customerDates}"></td>
-            <td th:text="${l.producer.name}"></td>
-            <td th:text="${l.customer.name}"></td>
-            <td th:text="${l.customer.phone}"></td>
-            <td th:text="${l.customer.address}"></td>
-            <td><a th:href="@{/laptop/edit/{id}(id=${l.getId()})}"><span th:text="#{laptop.th_label11}"></span></a></td>
-            <td><a th:href="@{/laptop/delete/{id}(id=${l.getId()})}"><span th:text="#{laptop.th_label12}"></span></a></td>
-            <td><a th:href="@{/laptop/view/{id}(id=${l.getId()})}"><span th:text="#{laptop.th_label13}"></span></a></td>
-        </tr>
-    </table>
-</div>
-<div>
-    <a th:href="@{'/laptop'(page=${laptops.number - 1})}" th:if="${laptops.hasPrevious()}"><span th:text="#{laptop.previous}"></span></a>
-    <span th:text="${laptops.number + 1}"></span>/<span th:text="${laptops.totalPages}"></span>
-    <a th:href="@{'/laptop'(page=${laptops.number + 1})}" th:if="${laptops.hasNext()}"><span th:text="#{laptop.next}"></span></a>
-</div>
-</body>
-</html>
+<!--        </tr>-->
+<!--        <tr th:each="l : ${laptops} ">-->
+<!--            <td th:text="${l.name}"></td>-->
+<!--             <td>-->
+<!--            <img th:src="@{'/a/' + ${l.image}}" width="200px" height="auto">-->
+<!--             </td>-->
+
+<!--            <td th:text="${l.description}"></td>-->
+<!--            <td th:text="${l.price}"></td>-->
+<!--            <td th:text="${l.status.name}"></td>-->
+<!--            <td th:text="${l.orders.customerDates}"></td>-->
+<!--            <td th:text="${l.producer.name}"></td>-->
+<!--            <td th:text="${l.customer.name}"></td>-->
+<!--            <td th:text="${l.customer.phone}"></td>-->
+<!--            <td th:text="${l.customer.address}"></td>-->
+<!--            <td><a th:href="@{/laptop/edit/{id}(id=${l.getId()})}"><span th:text="#{laptop.th_label11}"></span></a></td>-->
+<!--            <td><a th:href="@{/laptop/delete/{id}(id=${l.getId()})}"><span th:text="#{laptop.th_label12}"></span></a></td>-->
+<!--            <td><a th:href="@{/laptop/view/{id}(id=${l.getId()})}"><span th:text="#{laptop.th_label13}"></span></a></td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</div>-->
+<!--<div>-->
+<!--    <a th:href="@{'/laptop'(page=${laptops.number - 1})}" th:if="${laptops.hasPrevious()}"><span th:text="#{laptop.previous}"></span></a>-->
+<!--    <span th:text="${laptops.number + 1}"></span>/<span th:text="${laptops.totalPages}"></span>-->
+<!--    <a th:href="@{'/laptop'(page=${laptops.number + 1})}" th:if="${laptops.hasNext()}"><span th:text="#{laptop.next}"></span></a>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->

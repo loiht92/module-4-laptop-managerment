@@ -4,6 +4,7 @@ Design by TEMPLATED
 http://templated.co
 Released for free under the Creative Commons Attribution License
 */
+#success_message{ display: none;}
 
 body {
 	margin: 0;

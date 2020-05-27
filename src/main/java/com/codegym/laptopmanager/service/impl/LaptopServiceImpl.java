@@ -1,5 +1,6 @@
 package com.codegym.laptopmanager.service.impl;
 
+import com.codegym.laptopmanager.model.Customer;
 import com.codegym.laptopmanager.model.Laptop;
 import com.codegym.laptopmanager.model.Status;
 import com.codegym.laptopmanager.repository.LaptopRepository;
@@ -19,6 +20,11 @@ public class LaptopServiceImpl implements ILaptopService {
     @Override
     public Page<Laptop> findAll(Pageable pageable) {
         return laptopRepository.findAll(pageable);
+    }
+
+    @Override
+    public Iterable<Laptop> findAllByCustomer(Customer customer) {
+        return laptopRepository.findAllByCustomer(customer);
     }
 
     @Override

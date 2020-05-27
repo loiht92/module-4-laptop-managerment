@@ -1,5 +1,6 @@
 package com.codegym.laptopmanager.repository;
 
+import com.codegym.laptopmanager.model.Customer;
 import com.codegym.laptopmanager.model.Laptop;
 import com.codegym.laptopmanager.model.Status;
 import org.springframework.data.domain.Page;
@@ -12,4 +13,6 @@ public interface LaptopRepository extends PagingAndSortingRepository<Laptop, Lon
     Page<Laptop> findAllByStatus(Status status, Pageable pageable);
 
     Page<Laptop> findAllByName(String name, Pageable pageable);
+
+    Iterable<Laptop> findAllByCustomer(Customer customer);
 }

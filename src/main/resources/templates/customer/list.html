@@ -1,17 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<!--
-Design by TEMPLATED
-http://templated.co
-Released for free under the Creative Commons Attribution License
 
-Name       : Vestibule
-Description: A two-column, fixed-width design with dark color scheme.
-Version    : 1.0
-Released   : 20130406
-
--->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -21,97 +17,30 @@ Released   : 20130406
 </head>
 <body>
 <div id="wrapper">
-    <div id="menu-wrapper">
-        <div id="menu" class="container">
-            <ul>
-                <li class="current_page_item"><a href="#">Homepage</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Photos</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Links</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <a class="navbar-brand" href="#"><i class='fas fa-cannabis' style='font-size:40px;color:red'></i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<!--            <div id="menu" class="container">-->
+                <ul>
+                    <li class="current_page_item"><a href="/admin">Homepage</a></li>
+                    <li><a href="/customer">List Customers</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>&ensp;&ensp;&ensp;&ensp;&ensp;
+            <a href="/customer/create" class="btn btn-info" role="button"> + Add Customer</a>&ensp;&ensp;&ensp;&ensp;&ensp;
+            Language: <a href="?lang=en">English</a> | <a href="?lang=vi">Vietnamese</a>&ensp;&ensp;&ensp;&ensp;&ensp;
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="name">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
         </div>
-    </div>
-    <div id="logo" class="container">
-        <h1><a href="#">Vestibule</a></h1>
-        <p>In posuere eleifend odio quisque semper augue.</p>
-    </div>
-<!--    <div id="page" class="container">-->
-<!--        <div>-->
-<!--            <div class="entry">-->
-<!--                <p>This is <strong>Vestibule </strong>, a free, fully standards-compliant CSS template designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.     The photos in this template are from <a href="http://fotogrph.com/"> Fotogrph</a>. This free template is released under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so you're pretty much free to do whatever you want with it (even use it commercially) provided you give us credit for it. Have fun :) </p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div id="three-column" class="container">-->
-<!--        <div class="tbox1">-->
-<!--            <div class="box-style box-style01">-->
-<!--                <div class="content">-->
-<!--                    <div class="image"><img src="img-customer/img01.jpg" width="324" height="200" alt="" /></div>-->
-<!--                    <h2>Fusce ultrices fringilla</h2>-->
-<!--                    <p>Aliquam erat volutpat. Pellentesque tristique ante ut risus. Quisque dictum. Integer nisl risus, sagittis convallis, rutrum id, elementum congue, nibh. </p>-->
-<!--                    <a href="#" class="button">Learn More</a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="tbox2">-->
-<!--            <div class="box-style box-style02">-->
-<!--                <div class="content">-->
-<!--                    <div class="image"><img src="img-customer/img02.jpg" width="324" height="200" alt="" /></div>-->
-<!--                    <h2>Mauris vulputate dolor</h2>-->
-<!--                    <p>Aliquam erat volutpat. Pellentesque tristique ante ut risus. Quisque dictum. Integer nisl risus, sagittis convallis, rutrum id, elementum congue, nibh. </p>-->
-<!--                    <a href="#" class="button">Learn More</a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="tbox3">-->
-<!--            <div class="box-style box-style03">-->
-<!--                <div class="content">-->
-<!--                    <div class="image"><img src="img-customer/img03.jpg" width="324" height="200" alt="" /></div>-->
-<!--                    <h2>Nulla luctus eleifend </h2>-->
-<!--                    <p>Aliquam erat volutpat. Pellentesque tristique ante ut risus. Quisque dictum. Integer nisl risus, sagittis convallis, rutrum id, elementum congue, nibh.</p>-->
-<!--                    <a href="#" class="button">Learn More</a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div id="three-column" class="container">-->
-<!--        <div class="tbox1">-->
-<!--            <div class="box-style box-style01">-->
-<!--                <div class="content">-->
-<!--                    <div class="image"><img src="../../../../../../../Downloads/list-customer/images/img04.jpg" width="324" height="200" alt="" /></div>-->
-<!--                    <h2>Fusce ultrices fringilla</h2>-->
-<!--                    <p>Aliquam erat volutpat. Pellentesque tristique ante ut risus. Quisque dictum. Integer nisl risus, sagittis convallis, rutrum id, elementum congue, nibh. </p>-->
-<!--                    <a href="#" class="button">Learn More</a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="tbox2">-->
-<!--            <div class="box-style box-style02">-->
-<!--                <div class="content">-->
-<!--                    <div class="image"><img src="../../../../../../../Downloads/list-customer/images/img05.jpg" width="324" height="200" alt="" /></div>-->
-<!--                    <h2>Mauris vulputate dolor</h2>-->
-<!--                    <p>Aliquam erat volutpat. Pellentesque tristique ante ut risus. Quisque dictum. Integer nisl risus, sagittis convallis, rutrum id, elementum congue, nibh. </p>-->
-<!--                    <a href="#" class="button">Learn More</a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="tbox3">-->
-<!--            <div class="box-style box-style03">-->
-<!--                <div class="content">-->
-<!--                    <div class="image"><img src="../../../../../../../Downloads/list-customer/images/img06.jpg" width="324" height="200" alt="" /></div>-->
-<!--                    <h2>Nulla luctus eleifend </h2>-->
-<!--                    <p>Aliquam erat volutpat. Pellentesque tristique ante ut risus. Quisque dictum. Integer nisl risus, sagittis convallis, rutrum id, elementum congue, nibh.</p>-->
-<!--                    <a href="#" class="button">Learn More</a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-    <table border="1" class="table table-dark">
-                <tr>
+    </nav>
+    <table border="1" id="dtBasicExample" class="table" cellspacing="0" width="100%">
+                <tr style="background: #2f7dfc" >
                     <th th:text="#{customer.th_label1}"></th>
                     <th th:text="#{customer.th_label2}"></th>
                     <th th:text="#{customer.th_label3}"></th>
@@ -139,67 +68,5 @@ Released   : 20130406
 <div id="footer">
     <p>© 2013 Untitled Inc. All rights reserved. Lorem ipsum dolor sit amet nullam blandit consequat phasellus etiam lorem. Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.  Photos by <a href="http://fotogrph.com/">Fotogrph</a>.</p>
 </div>
-<!-- end #footer -->
-</div>
 </body>
 </html>
-
-
-
-<!--<!DOCTYPE html>-->
-<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"-->
-<!--      xmlns:sec="http://www.thymeleaf.org/extras/spring-seurity">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Title</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<h2>Spring Security Example</h2>-->
-
-<!--<div>-->
-<!--    <a th:href="@{/admin}">Home</a> | <a th:href="@{/logout}">Logout</a>-->
-<!--</div>-->
-<!--Language: <a href="?lang=en">English</a> | <a href="?lang=vi">Vietnamese</a><br/>-->
-<!--<a href="/customer/create"><span th:text="#{customer.create}"></span></a><br/>-->
-<!--<a href="/customer"><span th:text="#{customer.list}"></span></a>-->
-<!--<form>-->
-<!--    <span th:text="#{customer.span_label}"></span>-->
-<!--    <input name="name" type="text">-->
-<!--    <input type="submit" th:value="#{customer.search}">-->
-
-<!--</form>-->
-
-<!--<div class="notify">-->
-<!--    <div th:if="${message}">-->
-<!--        &lt;!&ndash;/*@thymesVar id="message" type="Gom.codegym.AppConfiguration"*/&ndash;&gt;-->
-<!--        <span th:text="${message}"></span>-->
-<!--    </div>-->
-<!--    <h1><span th:text="#{customer.h1}"></span></h1>-->
-<!--    <table border="1" >-->
-<!--        <tr>-->
-<!--            <th th:text="#{customer.th_label1}"></th>-->
-<!--            <th th:text="#{customer.th_label2}"></th>-->
-<!--            <th th:text="#{customer.th_label3}"></th>-->
-<!--            <th th:text="#{customer.th_label4}"></th>-->
-<!--            <th th:text="#{customer.th_label5}"></th>-->
-<!--            <th th:text="#{customer.th_label6}"></th>-->
-<!--            <th th:text="#{customer.th_label7}"></th>-->
-<!--        </tr>-->
-<!--        <tr th:each="c : ${customers} ">-->
-<!--            <td th:text="${c.name}"></td>-->
-<!--            <td th:text="${c.phone}"></td>-->
-<!--            <td th:text="${c.email}"></td>-->
-<!--            <td th:text="${c.address}"></td>-->
-<!--            <td><a th:href="@{/customer/edit/{id}(id=${c.getId()})}"><span th:text="#{customer.th_label5}"></span></a></td>-->
-<!--            <td><a th:href="@{/customer/delete/{id}(id=${c.getId()})}"><span th:text="#{customer.th_label6}"></span></a></td>-->
-<!--            <td><a th:href="@{/customer/view/{id}(id=${c.getId()})}"><span th:text="#{customer.th_label7}"></span></a></td>-->
-<!--        </tr>-->
-<!--    </table>-->
-<!--</div>-->
-<!--<div>-->
-<!--    <a th:href="@{'/customer'(page=${customers.number - 1})}" th:if="${customers.hasPrevious()}"><span th:text="#{customer.previous}"></span></a>-->
-<!--    <span th:text="${customers.number + 1}"></span>/<span th:text="${customers.totalPages}"></span>-->
-<!--    <a th:href="@{'/customer'(page=${customers.number + 1})}" th:if="${customers.hasNext()}"><span th:text="#{customer.next}"></span></a>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->

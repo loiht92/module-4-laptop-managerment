@@ -1,27 +1,46 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Vestibule  by TEMPLATED</title>
+    <link href="http://fonts.googleapis.com/css?family=Oxygen:400,700,300" rel="stylesheet" type="text/css" />
+    <link href="/css-customer-list/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
-<h2>Spring Security Example</h2>
-<hr/>
-<div>
-    <a th:href="@{/list}">Home</a> | <a th:href="@{/logout}">Logout</a>
-</div>
-Language: <a href="?lang=en">English</a> | <a href="?lang=vi">Vietnamese</a><br/>
-<a href="/customer"><span th:text="#{status.list}"></span></a>
+<div id="wrapper">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-<div class="notify">
-    <!--/*@thymesVar id="message" type="java"*/-->
-    <div th:if="${message}">
-        <span th:text="${message}"></span>
-    </div>
-    <h1><span th:text="#{status.h1}"></span></h1>
-    <table border="1" >
-        <tr>
+        <a class="navbar-brand" href="#"><i class='fas fa-cannabis' style='font-size:40px;color:red'></i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!--            <div id="menu" class="container">-->
+            <ul>
+                <li class="current_page_item"><a href="/admin">Homepage</a></li>
+                <li><a href="/status">List Status</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>&ensp;&ensp;&ensp;&ensp;&ensp;
+            <a href="/producer/create" class="btn btn-info" role="button"> + Add Status</a>&ensp;&ensp;&ensp;&ensp;&ensp;
+            Language: <a href="?lang=en">English</a> | <a href="?lang=vi">Vietnamese</a>&ensp;&ensp;&ensp;&ensp;&ensp;
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="name">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <table border="1" id="dtBasicExample" class="table" cellspacing="0" width="100%">
+        <tr style="background: #2f7dfc" >
             <th th:text="#{status.th_label1}"></th>
             <th th:text="#{status.th_label2}"></th>
             <th th:text="#{status.th_label3}"></th>
@@ -29,11 +48,55 @@ Language: <a href="?lang=en">English</a> | <a href="?lang=vi">Vietnamese</a><br/
         </tr>
         <tr th:each="s : ${statuses} ">
             <td th:text="${s.name}"></td>
-            <td><a th:href="@{/customer/edit/{id}(id=${s.getId()})}"><span th:text="#{status.th_label2}"></span></a></td>
-            <td><a th:href="@{/customer/delete/{id}(id=${s.getId()})}"><span th:text="#{status.th_label3}"></span></a></td>
-            <td><a th:href="@{/customer/view/{id}(id=${s.getId()})}"><span th:text="#{status.th_label4}"></span></a></td>
+            <td><a th:href="@{/status/edit/{id}(id=${s.getId()})}"><span th:text="#{status.th_label2}"></span></a></td>
+            <td><a th:href="@{/status/delete/{id}(id=${s.getId()})}"><span th:text="#{status.th_label3}"></span></a></td>
+            <td><a th:href="@{/status/view/{id}(id=${s.getId()})}"><span th:text="#{status.th_label4}"></span></a></td>
         </tr>
     </table>
 </div>
+<div id="footer">
+    <p>© 2013 Untitled Inc. All rights reserved. Lorem ipsum dolor sit amet nullam blandit consequat phasellus etiam lorem. Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.  Photos by <a href="http://fotogrph.com/">Fotogrph</a>.</p>
+</div>
 </body>
 </html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml"-->
+<!--      xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h2>Spring Security Example</h2>-->
+<!--<hr/>-->
+<!--<div>-->
+<!--    <a th:href="@{/list}">Home</a> | <a th:href="@{/logout}">Logout</a>-->
+<!--</div>-->
+<!--Language: <a href="?lang=en">English</a> | <a href="?lang=vi">Vietnamese</a><br/>-->
+<!--<a href="/status"><span th:text="#{status.list}"></span></a>-->
+
+<!--<div class="notify">-->
+<!--    &lt;!&ndash;/*@thymesVar id="message" type="java"*/&ndash;&gt;-->
+<!--    <div th:if="${message}">-->
+<!--        <span th:text="${message}"></span>-->
+<!--    </div>-->
+<!--    <h1><span th:text="#{status.h1}"></span></h1>-->
+<!--    <table border="1" >-->
+<!--        <tr>-->
+<!--            <th th:text="#{status.th_label1}"></th>-->
+<!--            <th th:text="#{status.th_label2}"></th>-->
+<!--            <th th:text="#{status.th_label3}"></th>-->
+<!--            <th th:text="#{status.th_label4}"></th>-->
+<!--        </tr>-->
+<!--        <tr th:each="s : ${statuses} ">-->
+<!--            <td th:text="${s.name}"></td>-->
+<!--            <td><a th:href="@{/status/edit/{id}(id=${s.getId()})}"><span th:text="#{status.th_label2}"></span></a></td>-->
+<!--            <td><a th:href="@{/status/delete/{id}(id=${s.getId()})}"><span th:text="#{status.th_label3}"></span></a></td>-->
+<!--            <td><a th:href="@{/status/view/{id}(id=${s.getId()})}"><span th:text="#{status.th_label4}"></span></a></td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->

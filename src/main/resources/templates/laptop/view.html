@@ -1,53 +1,85 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>View Customer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Vestibule  by TEMPLATED</title>
+    <link href="http://fonts.googleapis.com/css?family=Oxygen:400,700,300" rel="stylesheet" type="text/css" />
+    <script src="../js-customer-list/js.js"></script>
+    <link href="/css-customer-list/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
-<h1>View Laptop</h1>
-<a href="/laptop">List Laptop</a>
-<table>
-    <tr>
-        <td>Name:</td>
-        <td th:text="${laptop.getName()}"></td>
-    </tr>
-    <tr>
-        <td>Image:</td>
-        <td th:text="${laptop.getImage()}"></td>
-    </tr>
-    <tr>
-        <td>Description:</td>
-        <td th:text="${laptop.getDescription()}"></td>
-    </tr>
-    <tr>
-        <td>Price:</td>
-        <td th:text="${laptop.getPrice()}"></td>
-    </tr>
-    <tr>
-        <td>Status:</td>
-        <td th:text="${laptop.status.getName()}"></td>
-    </tr>
-    <tr>
-        <td>Orders:</td>
-        <td th:text="${laptop.orders.getCustomerDates()}"></td>
-    </tr>
-    <tr>
-        <td>Producer:</td>
-        <td th:text="${laptop.producer.getName()}"></td>
-    </tr>
-    <tr>
-        <td>Customer Name:</td>
-        <td th:text="${laptop.customer.getName()}"></td>
-    </tr>
-    <tr>
-        <td>Phone:</td>
-        <td th:text="${laptop.customer.getPhone()}"></td>
-    </tr>
-    <tr>
-        <td>Address:</td>
-        <td th:text="${laptop.customer.getAddress()}"></td>
-    </tr>
-</table>
+<div class="container">
+    <div id="menu-wrapper">
+        <div id="menu" class="container">
+            <ul>
+                <li class="current_page_item"><a href="/admin">Homepage</a></li>
+                <li><a href="/laptop">List Laptops</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Photos</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Links</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--/*@thymesVar id="message" type="java"*/-->
+    <th:block th:if="${message}">-->
+        <p th:text="${message}"></p>
+    </th:block>
+    <div>
+        <!--        <form th:action="@{/customer/edit}" th:object="${customer}" method="post" action="edit">-->
+        <input type="hidden" name="id" th:field="*{id}">
+        <div class="form-group">
+            <label style="padding-left: 20px">Name:</label>
+            <label style="padding-left: 20px" th:text="${laptop.getName()}"></label>
+        </div>
+        <div class="form-group">
+            <label style="padding-left: 20px">Image:</label>
+            <label style="padding-left: 20px" th:text="${laptop.getImage()}"></label>
+        </div>
+        <div class="form-group">
+            <label style="padding-left: 20px">Description:</label>
+            <label style="padding-left: 20px" th:text="${laptop.getDescription()}"></label>
+        </div>
+        <div class="form-group">
+            <label style="padding-left: 20px">Price:</label>
+            <label style="padding-left: 20px" th:text="${laptop.getPrice()}"></label>
+        </div>
+        <div class="form-group">
+            <label style="padding-left: 20px">Status:</label>
+            <label style="padding-left: 20px" th:text="${laptop.status.getName()}"></label>
+        </div>
+        <div class="form-group">
+            <label style="padding-left: 20px">Orders Date:</label>
+            <label style="padding-left: 20px" th:text="${laptop.orders.getCustomerDates()}"></label>
+        </div>
+        <div class="form-group">
+            <label style="padding-left: 20px">Producer:</label>
+            <label style="padding-left: 20px" th:text="${laptop.producer.getName()}"></label>
+        </div>
+        <div class="form-group">
+            <label style="padding-left: 20px">Customer Name:</label>
+            <label style="padding-left: 20px" th:text="${laptop.customer.getName()}"></label>
+        </div>
+        <div class="form-group">
+            <label style="padding-left: 20px">Phone:</label>
+            <label style="padding-left: 20px" th:text="${laptop.customer.getPhone()}"></label>
+        </div>
+        <div class="form-group">
+            <label style="padding-left: 20px">Address:</label>
+            <label style="padding-left: 20px" th:text="${laptop.customer.getAddress()}"></label>
+        </div>
+    </div>
+    <div id="footer">
+        <p>© 2013 Untitled Inc. All rights reserved. Lorem ipsum dolor sit amet nullam blandit consequat phasellus etiam lorem. Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.  Photos by <a href="http://fotogrph.com/">Fotogrph</a>.</p>
+    </div>
+</div>
 </body>
 </html>

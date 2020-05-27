@@ -1,125 +1,245 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Edit Laptop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Vestibule  by TEMPLATED</title>
+    <link href="http://fonts.googleapis.com/css?family=Oxygen:400,700,300" rel="stylesheet" type="text/css" />
+    <script src="../js-customer-list/js.js"></script>
+    <link href="/css-customer-list/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
-<h1>Edit laptop</h1>
-<a href="/orders">List Laptop</a>
-<!--/*@thymesVar id="message" type="java"*/-->
-<th:block th:if="${message}">
-    <p th:text="${message}"></p>
-</th:block>
+<div class="container">
+    <div id="menu-wrapper">
+        <div id="menu" class="container">
+            <ul>
+                <li class="current_page_item"><a href="/admin">Homepage</a></li>
+                <li><a href="/laptop">List Laptops</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Photos</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Links</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--/*@thymesVar id="message" type="java"*/-->
+    <th:block th:if="${message}">
+        <p th:text="${message}"></p>
+    </th:block>
+    <div>
+        <form th:action="@{/laptop/edit}"  method="post" th:object="${laptopForm}" enctype="multipart/form-data"  action="create">
+            <input type="hidden" name="id" th:field="*{id}">
+            <table>
+                <tr class="form-group">
+                    <td>Name:</td>
+                    <td><input type="text" th:field="*{name}"/></td>
+                </tr>
+                <tr class="form-group">
+                    <td>Image:</td>
+                    <td><input type="file" th:field="*{image}" multiple/></td>
+                </tr >
+                <tr class="form-group">
+                    <td>Description:</td>
+                    <td><input type="text" th:field="*{description}"/></td>
+                </tr>
+                <tr class="form-group">
+                    <td>Price:</td>
+                    <td><input type="text" th:field="*{price}"/></td>
+                </tr>
+                <tr class="form-group">
+                    <td>Status:</td>
+                    <td>
+                        <select name="name" th:field="*{status}">
+                            <option
+                                    th:each="status : ${statuses}"
+                                    th:value="${status.id}"
+                                    th:text="${status.name}">
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="form-group">
+                    <td>Orders:</td>
+                    <td>
+                        <select name="customerDates" th:field="*{orders}">
+                            <option
+                                    th:each="order : ${orders}"
+                                    th:value="${order.id}"
+                                    th:text="${order.customerDates}">
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="form-group">
+                    <td>Producer:</td>
+                    <td>
+                        <select name="name" th:field="*{producer}">
+                            <option
+                                    th:each="p : ${producer}"
+                                    th:value="${p.id}"
+                                    th:text="${p.name}">
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="form-group">
+                    <td>Customer Name:</td>
+                    <td>
+                        <select name="name" th:field="*{customer}">
+                            <option
+                                    th:each="c : ${customers}"
+                                    th:value="${c.id}"
+                                    th:text="${c.name}">
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Save"></td>
+                </tr>
+            </table>
 
-<form th:action="@{/laptop/edit}" th:object="${laptopForm}" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="id" th:field="*{id}">
-    <table>
-        <tr>
-            <td>Name:</td>
-            <td><input type="text" name="name" th:value="${laptopForm.name}"></td>
-        </tr>
-        <tr>
-            <td>Image:</td>
-            <td><input type="file" name="image" th:value="${laptopForm.image}" multiple></td>
-        </tr>
-        <tr>
-            <td>Description:</td>
-            <td><input type="text" name="description" th:value="${laptopForm.description}"></td>
-        </tr>
-        <tr>
-            <td>Price:</td>
-            <td><input type="text" name="price" th:value="${laptopForm.price}"></td>
-        </tr>
-        <tr>
-            <td>Status:</td>
-            <td>
-                <select name="name" th:field="*{status}">
-                    <option
-                            th:each="status : ${statuses}"
-                            th:value="${status.id}"
-                            th:text="${status.name}">e
-                    </option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Orders:</td>
-            <td>
-                <select name="customerDates" th:field="*{orders}">
-                    <option
-                            th:each="order : ${orders}"
-                            th:value="${order.id}"
-                            th:text="${order.customerDates}">
-                    </option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Producer:</td>
-            <td>
-                <select name="name" th:field="*{producer}">
-                    <option
-                            th:each="p : ${producer}"
-                            th:value="${p.id}"
-                            th:text="${p.name}">
-                    </option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Customer Name:</td>
-            <td>
-                <select name="name" th:field="*{customer}">
-                    <option
-                            th:each="c : ${customers}"
-                            th:value="${c.id}"
-                            th:text="${c.name}">
-                    </option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Phone:</td>
-            <td>
-                <select name="phone" th:field="*{customer}">
-                    <option
-                            th:each="c : ${customers}"
-                            th:value="${c.id}"
-                            th:text="${c.phone}">
-                    </option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td>
-                <select name="email" th:field="*{customer}">
-                    <option
-                            th:each="c : ${customers}"
-                            th:value="${c.id}"
-                            th:text="${c.email}">
-                    </option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Address:</td>
-            <td>
-                <select name="address" th:field="*{customer}">
-                    <option
-                            th:each="c : ${customers}"
-                            th:value="${c.id}"
-                            th:text="${c.address}">
-                    </option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Update"></td>
-        </tr>
-    </table>
-</form>
+        </form>
+    </div>
+
+    <div id="footer">
+        <p>© 2013 Untitled Inc. All rights reserved. Lorem ipsum dolor sit amet nullam blandit consequat phasellus etiam lorem. Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.  Photos by <a href="http://fotogrph.com/">Fotogrph</a>.</p>
+    </div>
+</div>
 </body>
 </html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Edit Laptop</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Edit laptop</h1>-->
+<!--<a href="/orders">List Laptop</a>-->
+<!--&lt;!&ndash;/*@thymesVar id="message" type="java"*/&ndash;&gt;-->
+<!--<th:block th:if="${message}">-->
+<!--    <p th:text="${message}"></p>-->
+<!--</th:block>-->
+
+<!--<form th:action="@{/laptop/edit}" th:object="${laptopForm}" method="post" enctype="multipart/form-data">-->
+<!--    <input type="hidden" name="id" th:field="*{id}">-->
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <td>Name:</td>-->
+<!--            <td><input type="text" name="name" th:value="${laptopForm.name}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Image:</td>-->
+<!--            <td><input type="file" name="image" th:value="${laptopForm.image}" multiple></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Description:</td>-->
+<!--            <td><input type="text" name="description" th:value="${laptopForm.description}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Price:</td>-->
+<!--            <td><input type="text" name="price" th:value="${laptopForm.price}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Status:</td>-->
+<!--            <td>-->
+<!--                <select name="name" th:field="*{status}">-->
+<!--                    <option-->
+<!--                            th:each="status : ${statuses}"-->
+<!--                            th:value="${status.id}"-->
+<!--                            th:text="${status.name}">e-->
+<!--                    </option>-->
+<!--                </select>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Orders:</td>-->
+<!--            <td>-->
+<!--                <select name="customerDates" th:field="*{orders}">-->
+<!--                    <option-->
+<!--                            th:each="order : ${orders}"-->
+<!--                            th:value="${order.id}"-->
+<!--                            th:text="${order.customerDates}">-->
+<!--                    </option>-->
+<!--                </select>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Producer:</td>-->
+<!--            <td>-->
+<!--                <select name="name" th:field="*{producer}">-->
+<!--                    <option-->
+<!--                            th:each="p : ${producer}"-->
+<!--                            th:value="${p.id}"-->
+<!--                            th:text="${p.name}">-->
+<!--                    </option>-->
+<!--                </select>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Customer Name:</td>-->
+<!--            <td>-->
+<!--                <select name="name" th:field="*{customer}">-->
+<!--                    <option-->
+<!--                            th:each="c : ${customers}"-->
+<!--                            th:value="${c.id}"-->
+<!--                            th:text="${c.name}">-->
+<!--                    </option>-->
+<!--                </select>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Phone:</td>-->
+<!--            <td>-->
+<!--                <select name="phone" th:field="*{customer}">-->
+<!--                    <option-->
+<!--                            th:each="c : ${customers}"-->
+<!--                            th:value="${c.id}"-->
+<!--                            th:text="${c.phone}">-->
+<!--                    </option>-->
+<!--                </select>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Email:</td>-->
+<!--            <td>-->
+<!--                <select name="email" th:field="*{customer}">-->
+<!--                    <option-->
+<!--                            th:each="c : ${customers}"-->
+<!--                            th:value="${c.id}"-->
+<!--                            th:text="${c.email}">-->
+<!--                    </option>-->
+<!--                </select>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Address:</td>-->
+<!--            <td>-->
+<!--                <select name="address" th:field="*{customer}">-->
+<!--                    <option-->
+<!--                            th:each="c : ${customers}"-->
+<!--                            th:value="${c.id}"-->
+<!--                            th:text="${c.address}">-->
+<!--                    </option>-->
+<!--                </select>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td></td>-->
+<!--            <td><input type="submit" value="Update"></td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->

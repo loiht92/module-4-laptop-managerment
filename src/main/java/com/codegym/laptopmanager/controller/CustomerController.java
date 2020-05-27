@@ -1,7 +1,11 @@
 package com.codegym.laptopmanager.controller;
 
 import com.codegym.laptopmanager.model.Customer;
+import com.codegym.laptopmanager.model.Laptop;
+import com.codegym.laptopmanager.model.Orders;
 import com.codegym.laptopmanager.service.ICustomerService;
+import com.codegym.laptopmanager.service.ILaptopService;
+import com.codegym.laptopmanager.service.IOrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,8 +24,14 @@ public class CustomerController {
     @Autowired
     private ICustomerService customerService;
 
+    @Autowired
+    private IOrdersService ordersService;
+
+    @Autowired
+    private ILaptopService laptopService;
+
     @GetMapping
-    public ModelAndView listCustomer(@RequestParam("name") Optional<String> name, @PageableDefault(size = 10) Pageable pageable){
+    public ModelAndView listCustomer(@RequestParam("name") Optional<String> name, @PageableDefault(size = 3) Pageable pageable){
         Page<Customer> customers;
         if (name.isPresent()){
             customers = customerService.findAllByCustomerName(name.get(), pageable);
@@ -67,7 +77,7 @@ public class CustomerController {
     }
 
     @GetMapping("/delete/{id}")
-    public ModelAndView showFormDeleteCustomerr(@PathVariable Long id){
+    public ModelAndView showFormDeleteCustomer(@PathVariable Long id){
         Optional<Customer> customer = customerService.findById(id);
         if (customer.isPresent()){
             ModelAndView modelAndView = new ModelAndView("/customer/delete");
@@ -80,6 +90,14 @@ public class CustomerController {
 
     @PostMapping("/delete")
     public RedirectView deleteCustomer(@ModelAttribute("customer") Customer customer, RedirectAttributes redirect){
+        Iterable<Orders> orders = ordersService.findAllByCustomer(customer);
+        Iterable<Laptop> laptops = laptopService.findAllByCustomer(customer);
+        for(Orders order: orders){
+            order.setCustomer(null);
+        }
+        for(Laptop laptop: laptops){
+            laptop.setCustomer(null);
+        }
         customerService.remote(customer.getId());
         redirect.addFlashAttribute("message", "Delete customer successfully !" );
         return new RedirectView("/customer");
